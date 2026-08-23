@@ -5,59 +5,49 @@ import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./now.module.css";
 
 export const metadata: Metadata = {
-  title: "Now — Dipak Vishwakarma",
-  description: "What I'm focused on right now.",
-  // Hidden page per the site map: reachable by link, kept out of search.
+  title: "Now — Radhika Mahajan Architects | Current Sites & Studio Status",
+  description: "Live updates on active site visits, current project capacity, and studio focus at Radhika Mahajan Architects.",
   robots: { index: false, follow: true },
 };
 
-/**
- * The /now page.
- *
- * The copy master is explicit: "Keep this page personal, current and dated.
- * Do not fill it with evergreen brand copy." So the sections below carry only
- * what the handoff pack actually establishes as true, and each is written to
- * be replaced by Dipak in his own words. `lastUpdated` is rendered so a stale
- * page is visibly stale rather than quietly wrong.
- */
-const lastUpdated = "2026-08-18";
+const lastUpdated = "2026-08-23";
 
 const nowSections = [
   {
     index: "01",
-    label: "Current focus",
-    note: "What I am building and improving right now.",
+    label: "Active Site Visits & Execution",
+    note: "Current residential and villa projects actively on site.",
     items: [
-      "Building Authority Closers — a sales education, practice and technology company built around one belief: watching content is not the same as building skill.",
-      "Codifying the frameworks behind The Certainty Builder™ into material other people can teach from.",
+      "Bibewadi 4 BHK Residence — Joinery installation, Hettich concealed channels, and Italian marble wall claddings.",
+      "Lonavala Luxury Villa — Terraced roof framework, cross-ventilation optimization, and outdoor basalt masonry.",
+      "Kolte Patil Living — Acoustic false ceiling cove lighting and modular kitchen carcass assembly.",
     ],
   },
   {
     index: "02",
-    label: "Currently learning",
-    note: "Skills, ideas and questions I am actively studying.",
+    label: "Studio Capacity",
+    note: "Intake availability for the upcoming quarter.",
     items: [
-      "How AI can improve learning, practice and feedback in sales without replacing human judgment.",
+      "Accepting 3 to 5 new full home interior projects (3 & 4 BHKs) and custom architectural villas across Pune & Lonavala.",
+      "Offering complimentary initial 3D design consultations for recently possessed flat owners.",
     ],
   },
   {
     index: "03",
-    label: "Currently reading",
-    note: "Books and long-form material currently being read.",
-    items: [],
+    label: "Material & Design Research",
+    note: "Materials and architectural details we are currently exploring.",
+    items: [
+      "Micro-cement and fluted stone textures for seamless bathroom and foyer transitions.",
+      "Concealed architectural linear lighting profiles with warm 2700K – 3000K circadian calibration.",
+    ],
   },
   {
     index: "04",
-    label: "Currently listening",
-    note: "Podcasts, interviews and conversations worth revisiting.",
-    items: [],
-  },
-  {
-    index: "05",
-    label: "Current goals",
-    note: "The outcomes and projects that matter most in this season.",
+    label: "Execution Blueprint",
+    note: "Standard operating milestones.",
     items: [
-      "Publish consistently on buyer psychology, communication and high-ticket sales.",
+      "Strict 45-day turnkey delivery schedules with WhatsApp photographic progress reports sent every 3 days.",
+      "Transparent 40-40-20 milestone payment plan tied directly to verified site inspections.",
     ],
   },
 ];

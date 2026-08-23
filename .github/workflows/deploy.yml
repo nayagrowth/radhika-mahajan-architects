@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - Dipak Vishwakarma Web
+name: CI/CD Pipeline - Radhika Mahajan Architects (RMA)
 
 on:
   push:
@@ -44,23 +44,6 @@ jobs:
           cp -r public .next/standalone/public
           rm -rf .next/standalone/public/test-snapshots
 
-          # Keep only the 10 media files actually referenced in source
-          python3 - <<'PYEOF'
-          import os
-          keep = {
-              '01_dsc06974.webp', '02_screenshot_2026-07-29_at_4.45.57_pm__1_.png',
-              '03_dsc06998.webp', '04_dsc07013.webp', '05_dsc06990.webp',
-              '06_dsc04024.webp', '08_img_1624.webp', '09_screenshot_2026-08-08_at_10.33.36_pm.png',
-              '10_screenshot_2026-08-08_at_10.40.56_pm.png', 'authority_closers_png__1_.png'
-          }
-          media_dir = '.next/standalone/public/media'
-          if os.path.exists(media_dir):
-              for f in os.listdir(media_dir):
-                  fp = os.path.join(media_dir, f)
-                  if not os.path.isdir(fp) and f not in keep:
-                      os.remove(fp)
-          PYEOF
-
           # Write Dockerfile into the standalone bundle so nivi can build locally
           cat > .next/standalone/Dockerfile << 'DOCKERFILE'
           FROM node:22-alpine
@@ -82,7 +65,8 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s
+' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           cat <<EOF > ~/.ssh/config
           Host production
@@ -96,27 +80,23 @@ jobs:
 
       - name: Rsync Bundle to Production
         run: |
-          ssh production "mkdir -p /home/nivi/apps/dipak-web"
-          # Rsync: only changed files transferred, delta compression on
-          rsync -az --delete \
-            --exclude='*.tar.gz' \
-            .next/standalone/ production:/home/nivi/apps/dipak-web/
-          # Always ship latest docker-compose
-          scp docker-compose.prod.yml production:/home/nivi/apps/dipak-web/docker-compose.prod.yml
+          ssh production "mkdir -p /home/nivi/apps/rma-web"
+          rsync -az --delete             --exclude='*.tar.gz'             .next/standalone/ production:/home/nivi/apps/rma-web/
+          scp docker-compose.prod.yml production:/home/nivi/apps/rma-web/docker-compose.prod.yml
 
       - name: Build Image & Restart Container on Production
         run: |
           ssh production << 'REMOTE'
             set -e
-            cd /home/nivi/apps/dipak-web
+            cd /home/nivi/apps/rma-web
 
             echo "--- Building Docker image from synced bundle ---"
-            docker build -t dipak-web-image:latest .
+            docker build -t rma-web-image:latest .
 
             echo "--- Swapping container ---"
-            docker stop dipak-web 2>/dev/null || true
-            docker rm   dipak-web 2>/dev/null || true
-            docker compose -f docker-compose.prod.yml up -d dipak-web
+            docker stop rma-web 2>/dev/null || true
+            docker rm   rma-web 2>/dev/null || true
+            docker compose -f docker-compose.prod.yml up -d rma-web
 
             echo "--- Pruning dangling images ---"
             docker image prune -f || true
@@ -126,26 +106,10 @@ jobs:
         run: |
           sleep 4
           for i in $(seq 1 15); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://dipakvishwakarma.com/api/health || echo "0")
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://rma.preview.nayagrowth.com/api/health || echo "0")
             echo "Attempt $i → HTTP $STATUS"
             [ "$STATUS" = "200" ] && { echo "✅ Healthy!"; exit 0; }
             sleep 2
           done
           echo "❌ Health check failed"
           exit 1
-
-      - name: Ping Search Engines (Sitemap + IndexNow)
-        run: |
-          echo "--- Submitting sitemap to Google ---"
-          curl -s "https://www.google.com/ping?sitemap=https://dipakvishwakarma.com/sitemap.xml" -o /dev/null -w "Google ping: %{http_code}\n" || true
-
-          echo "--- Submitting sitemap to Bing ---"
-          curl -s "https://www.bing.com/ping?sitemap=https://dipakvishwakarma.com/sitemap.xml" -o /dev/null -w "Bing ping: %{http_code}\n" || true
-
-          echo "--- Triggering IndexNow (all article URLs) ---"
-          curl -s -X POST https://dipakvishwakarma.com/api/indexnow \
-            -H "Content-Type: application/json" \
-            -w "\nIndexNow POST status: %{http_code}\n" || true
-
-          echo "✅ Search engine notifications sent"
-

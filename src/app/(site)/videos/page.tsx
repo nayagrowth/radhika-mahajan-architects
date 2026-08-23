@@ -5,32 +5,32 @@ import {
   videoRails,
   youtubeChannelUrl,
   signatureProperties,
-} from "@/features/dipak-media/media.content";
+} from "@/features/rma-media/media.content";
 import { PageHero, SectionHeader, Reveal } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./videos.module.css";
 
 export const metadata: Metadata = {
-  title: "Videos by Dipak Vishwakarma — Founder of Authority Closers | Keynotes & Sales Breakdowns",
+  title: "Spatial Walkthroughs & Design Films — Radhika Mahajan Architects | Pune & Lonavala",
   description:
-    "Keynotes, sales breakdowns, and practical lessons on buyer psychology from Dipak Vishwakarma, Founder of Authority Closers & High-Ticket Sales Expert.",
+    "Watch room-by-room architectural walkthroughs, 3D design to execution breakdowns, and material selections by Radhika Mahajan Architects (RMA).",
 };
 
 export default function VideosPage() {
   return (
     <>
       <PageHero
-        eyebrow="Videos"
+        eyebrow="Spatial Walkthroughs"
         index="01"
-        headline="Watch the latest"
+        headline="Experience our built architecture"
         body={[
-          "Conversations, breakdowns and practical lessons on how buyers think and how better sales conversations are built.",
+          "Cinematic room-by-room walkthroughs and design breakdowns exploring 3D spatial planning, false ceiling lighting, and bespoke joinery.",
         ]}
         aside={
           <div className={styles.heroMediaPlate}>
             <Image
-              src="/media/06_dsc04024.webp"
-              alt="Dipak Vishwakarma speaking on stage"
+              src="/media/projects/rma-project-a03.webp"
+              alt="Radhika Mahajan Architects Spatial Tour"
               width={1200}
               height={800}
               sizes="(max-width: 900px) 90vw, 36vw"
@@ -39,7 +39,7 @@ export default function VideosPage() {
               priority
             />
             <span className={styles.heroMediaCaption}>
-              KEYNOTE · STAGE LECTURES &amp; BREAKDOWNS
+              SPATIAL TOUR · 3D TO BUILT REALITY
             </span>
           </div>
         }

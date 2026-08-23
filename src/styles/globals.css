@@ -1,23 +1,33 @@
 /* ==========================================================================
-   Dipak Vishwakarma — Global Design Tokens
+   Radhika Mahajan Architects (RMA) — Global Design Tokens
    Single source of truth for colour, type, rhythm, and motion.
-   Feature CSS Modules must consume these tokens rather than re-declaring hex.
+   Feature CSS Modules consume these tokens directly.
    ========================================================================== */
 
 :root {
-  /* --- Surface / ink ---------------------------------------------------- */
-  --ink-obsidian: #11110f;
-  --ink-obsidian-deep: #0e0d0c;
-  --ink-plate: #181715;
-  --ink-body: #4a473e;
-  --ink-muted: #6d6a60;
-  --ink-faint: #8f8b80;
+  /* --- RMA Approved Colour Palette -------------------------------------- */
+  /* Mist White: Primary light field */
+  --paper: #f4f8fb;
+  --paper-raised: #ffffff;
+  --paper-sunken: #eaf0f5;
 
-  --paper: #f4f1ea;
-  --paper-raised: #faf8f3;
-  --paper-sunken: #ebe7dd;
+  /* Obsidian Black: Primary dark */
+  --ink-obsidian: #080309;
+  --ink-obsidian-deep: #050206;
+  --ink-plate: #130d15;
+  --ink-body: #3c3739;
+  
+  /* Stone Grey: Secondary neutral */
+  --ink-muted: #675e61;
+  --ink-faint: #8d8588;
 
-  /* --- Metallic gold ramp ----------------------------------------------- */
+  /* Architectural Beige: Warm accent */
+  --beige: #d5ccbf;
+  --beige-light: #e8e2d8;
+  --beige-dark: #b8ad9e;
+  --beige-wash: rgba(213, 204, 191, 0.18);
+
+  /* Architectural Gold & Warm Metal Ramp */
   --gold: #c89545;
   --gold-deep: #8f621f;
   --gold-light: #d8aa5a;
@@ -25,13 +35,13 @@
   --gold-hairline: rgba(200, 149, 69, 0.32);
 
   /* --- Inverted (dark sections) ----------------------------------------- */
-  --inv-text: #f4f1ea;
-  --inv-text-muted: rgba(244, 241, 234, 0.62);
-  --inv-hairline: rgba(244, 241, 234, 0.14);
+  --inv-text: #f4f8fb;
+  --inv-text-muted: rgba(244, 248, 251, 0.65);
+  --inv-hairline: rgba(244, 248, 251, 0.14);
 
-  /* --- Rules ------------------------------------------------------------ */
-  --rule-hairline: rgba(17, 17, 15, 0.12);
-  --rule-strong: rgba(17, 17, 15, 0.28);
+  /* --- Architectural Rules & Grids -------------------------------------- */
+  --rule-hairline: rgba(8, 3, 9, 0.10);
+  --rule-strong: rgba(8, 3, 9, 0.24);
 
   /* --- Type ------------------------------------------------------------- */
   --font-family-serif: var(--font-serif), "Iowan Old Style", Georgia, serif;

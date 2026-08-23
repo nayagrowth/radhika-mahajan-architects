@@ -1,7 +1,7 @@
 import { HomeIntroStory } from "@/features/home-intro-story";
 import { SiteFooter } from "@/features/site-chrome";
 import { getAllArticles } from "@/lib/articles";
-import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
+import type { FeaturedArticle } from "@/features/rma-thinking/thinking.types";
 
 export default function HomePage() {
   // Read the article store here (server) and hand it to the client story

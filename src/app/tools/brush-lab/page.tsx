@@ -1,5 +1,5 @@
 import React from "react";
-import brushConfig from "@/features/dipak-hero/brush/enso-brush.config.json";
+import brushConfig from "@/features/rma-hero/brush/enso-brush.config.json";
 
 export default function BrushLabPage() {
   return (

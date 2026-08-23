@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import heroComposition from "../src/features/dipak-hero/generated/hero-composition.json";
+import heroComposition from "../src/features/rma-hero/generated/hero-composition.json";
 
 const TARGET_VIEWPORTS = [
   { name: "mobile-359x807", width: 359, height: 807, isMobile: true },

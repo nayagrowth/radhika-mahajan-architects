@@ -1,0 +1,121 @@
+workflow = """name: CI/CD Pipeline - Radhika Mahajan Architects (RMA)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to Production
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint & Typecheck
+        run: |
+          npm run lint
+          npm run typecheck
+
+      - name: Next.js Build
+        run: npm run build
+
+      - name: Assemble Lean Standalone Bundle
+        run: |
+          mkdir -p .next/standalone/.next
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+          rm -rf .next/standalone/public/test-snapshots
+
+          # Write Dockerfile into the standalone bundle so nivi can build locally
+          cat > .next/standalone/Dockerfile << 'DOCKERFILE'
+          FROM node:22-alpine
+          WORKDIR /app
+          ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 HOSTNAME=0.0.0.0 PORT=3000
+          RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+          COPY --chown=nextjs:nodejs . ./
+          USER nextjs
+          EXPOSE 3000
+          CMD ["node", "server.js"]
+          DOCKERFILE
+
+          echo "Bundle size: $(du -sh .next/standalone | cut -f1)"
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat <<EOF > ~/.ssh/config
+          Host production
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking accept-new
+            IdentitiesOnly yes
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Rsync Bundle to Production
+        run: |
+          ssh production "mkdir -p /home/nivi/apps/rma-web"
+          rsync -az --delete \
+            --exclude='*.tar.gz' \
+            .next/standalone/ production:/home/nivi/apps/rma-web/
+          scp docker-compose.prod.yml production:/home/nivi/apps/rma-web/docker-compose.prod.yml
+
+      - name: Build Image & Restart Container on Production
+        run: |
+          ssh production << 'REMOTE'
+            set -e
+            cd /home/nivi/apps/rma-web
+
+            echo "--- Building Docker image from synced bundle ---"
+            docker build -t rma-web-image:latest .
+
+            echo "--- Swapping container ---"
+            docker stop rma-web 2>/dev/null || true
+            docker rm   rma-web 2>/dev/null || true
+            docker compose -f docker-compose.prod.yml up -d rma-web
+
+            echo "--- Pruning dangling images ---"
+            docker image prune -f || true
+          REMOTE
+
+      - name: Health Check
+        run: |
+          sleep 4
+          for i in $(seq 1 15); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://rma.preview.nayagrowth.com/api/health || echo "0")
+            echo "Attempt $i → HTTP $STATUS"
+            [ "$STATUS" = "200" ] && { echo "✅ Healthy!"; exit 0; }
+            sleep 2
+          done
+          echo "❌ Health check failed"
+          exit 1
+"""
+with open("D:/Projects/RMA/.github/workflows/deploy.yml", "w", encoding="utf-8") as f:
+    f.write(workflow)
+
+print("Updated .github/workflows/deploy.yml successfully!")

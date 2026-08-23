@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { leadMagnets } from "@/features/dipak-media/media.content";
-import { authorityClosersCta } from "@/features/site-chrome";
+import { leadMagnets } from "@/features/rma-media/media.content";
 import { PageHero, Reveal } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./resources.module.css";
 
 export const metadata: Metadata = {
-  title: "Sales Resources by Dipak Vishwakarma — Founder of Authority Closers",
+  title: "Projects & Architecture Portfolio — Radhika Mahajan Architects | Pune & Lonavala",
   description:
-    "Practical tools, objection frameworks, and high-ticket guides from Dipak Vishwakarma, Founder of Authority Closers.",
+    "Explore built residential interiors, luxury 3 & 4 BHKs, weekend villas, and turnkey commercial architecture by Radhika Mahajan Architects (RMA).",
 };
 
 export default function ResourcesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Resources"
+        eyebrow="Built Portfolio"
         index="01"
-        headline="Practical tools for better conversations"
+        headline="Form, space and materiality in practice"
         body={[
-          "Practical tools to help you think, communicate and sell with more certainty.",
+          "A curated selection of 3 & 4 BHK residences, luxury hillside retreats, and turnkey spatial transformations crafted across Pune and Lonavala.",
         ]}
         aside={
           <div className={styles.heroMediaFrame}>
             <Image
-              src="/media/04_dsc07013.webp"
-              alt="Notebook and frameworks detail"
+              src="/media/projects/rma-project-a01.webp"
+              alt="Radhika Mahajan Architects Portfolio"
               width={1000}
               height={750}
               sizes="(max-width: 900px) 70vw, 24rem"
@@ -38,37 +37,48 @@ export default function ResourcesPage() {
         }
       />
 
-      <section className={editorial.section} aria-label="Available resources">
+      <section className={editorial.section} aria-label="Built projects">
         <div className={editorial.container}>
           <ul className={styles.resourceGrid}>
-            {leadMagnets.map((magnet, index) => (
+            {leadMagnets.map((project, index) => (
               <Reveal
                 as="li"
-                key={magnet.index}
+                key={project.index}
                 index={index}
                 className={styles.resourceCard}
               >
-                <span className={styles.resourceIndex}>{magnet.index}</span>
+                {project.image ? (
+                  <div className={styles.cardImageWrap}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={600}
+                      height={375}
+                      className={styles.cardImage}
+                    />
+                  </div>
+                ) : null}
+
+                <div className={styles.cardHeader}>
+                  <span className={styles.resourceIndex}>{project.index}</span>
+                  {project.category ? (
+                    <span className={styles.resourceCategory}>{project.category}</span>
+                  ) : null}
+                </div>
 
                 <div className={styles.resourceBody}>
-                  <h2 className={styles.resourceTitle}>{magnet.title}</h2>
+                  <h2 className={styles.resourceTitle}>{project.title}</h2>
                   <p className={styles.resourceDescription}>
-                    {magnet.description}
+                    {project.description}
                   </p>
                 </div>
 
-                {/*
-                  Routes to the contact form with the resource pre-selected
-                  rather than linking a file. The copy master requires final
-                  downloads and their exact promises to be approved before
-                  publishing, so no download URL is invented here.
-                */}
                 <Link
                   className={styles.resourceCta}
-                  href={`/contact?topic=${encodeURIComponent(magnet.topic)}`}
+                  href={`/contact?topic=${encodeURIComponent(project.topic)}`}
                   data-ac-event="public.resources.request_clicked"
                 >
-                  {magnet.ctaLabel}
+                  {project.ctaLabel}
                   <span aria-hidden="true">→</span>
                 </Link>
               </Reveal>
@@ -81,30 +91,25 @@ export default function ResourcesPage() {
         <div className={editorial.container}>
           <div className={styles.bridgeBlock}>
             <h2 className={styles.bridgeHeadline}>
-              Looking for structured sales learning and practice
+              Ready to transform your residence or commercial space
               <span className={styles.goldPeriod}>?</span>
             </h2>
             <p className={styles.bridgeBody}>
-              Authority Closers is where these frameworks become a full learning
-              loop: learn the idea, apply it in real conversations, practise
-              deliberately, receive useful feedback and improve through
-              repetition.
+              Radhika Mahajan Architects manages the complete lifecycle—from 3D spatial visualization and transparent BOQ material selection to committed 45-day on-site turnkey handover with WhatsApp milestone updates every 3 days.
             </p>
 
             <div className={editorial.ctaRow}>
-              <a
+              <Link
                 className={editorial.ctaPrimary}
-                href={authorityClosersCta.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-ac-event={authorityClosersCta.event}
+                href="/contact"
+                data-ac-event="public.projects.book_consultation_clicked"
                 data-ac-surface="resources-bridge"
               >
-                {authorityClosersCta.label}
+                Book Design Consultation
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
               <Link className={editorial.ctaSecondary} href="/articles">
-                Explore My Thinking
+                Read Design Journal
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -114,3 +119,4 @@ export default function ResourcesPage() {
     </>
   );
 }
+

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { aboutContent } from "@/features/dipak-about/about.content";
+import { aboutContent } from "@/features/rma-about/about.content";
 import { authorityClosersCta } from "@/features/site-chrome";
 import { PageHero, SectionHeader, Reveal, BackgroundMedia } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-  title: "About Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  title: "About Radhika Mahajan Architects — Ar. Radhika Mahajan | Architecture & Interiors Pune",
   description:
-    "Dipak Vishwakarma is an entrepreneur, sales educator, and Founder of Authority Closers. The work and philosophy behind The Certainty Builder™.",
+    "Ar. Radhika Mahajan is Founder & Principal Architect of Radhika Mahajan Architects (RMA). 35+ completed projects across Pune & Lonavala.",
 };
 
 const { hero, story, journey, philosophy, principles, missionVision, faq, cta } =
@@ -28,8 +28,8 @@ export default function AboutPage() {
           <div className={styles.heroPortraitFrame}>
             <Image
               className={styles.heroPortrait}
-              src="/media/01_dsc06974.webp"
-              alt="Dipak Vishwakarma"
+              src="/media/projects/rma-project-a01.webp"
+              alt="Radhika Mahajan Architects"
               width={1200}
               height={900}
               sizes="(max-width: 900px) 60vw, 30vw"
@@ -62,10 +62,10 @@ export default function AboutPage() {
             <Reveal index={story.paragraphs.length}>
               <div className={styles.storySignatureWrap}>
                 <Image
-                  src="/branding/dipak-signature-full-black.webp"
-                  alt="Dipak Vishwakarma Signature"
-                  width={220}
-                  height={92}
+                  src="/branding/rma-signature-full-black.webp"
+                  alt="Radhika Mahajan Architects Signature"
+                  width={240}
+                  height={76}
                   className={styles.storySignatureImg}
                 />
               </div>

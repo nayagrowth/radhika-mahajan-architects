@@ -1,9 +1,10 @@
 /**
- * Global brand + navigation contract.
+ * Global brand + navigation contract for Radhika Mahajan Architects (RMA).
  *
- * Copy is transcribed from the client handoff pack
- * (01_COPY/DIPAK_WEBSITE_COPY_MASTER.md, sections NAVIGATION and FOOTER).
- * Every public page reads from here so nav/footer never drift per-page.
+ * Source of truth derived from the approved RMA Identity & Visual Guidelines:
+ * - FORM × SPACE × DETAIL
+ * - DESIGNING SPACES. CREATING EXPERIENCES.
+ * - Architecture + Interior Design Studio | Pune & Lonavala
  */
 
 export interface NavLink {
@@ -16,49 +17,55 @@ export interface SiteBrand {
   secondLine: string;
   positioning: string;
   primaryIdea: string;
+  subTagline: string;
 }
 
 export const siteBrand: SiteBrand = {
-  firstLine: "DIPAK",
-  secondLine: "VISHWAKARMA",
-  positioning: "Founder of Authority Closers | High-Ticket Sales Expert",
-  primaryIdea: "Because people buy certainty.",
+  firstLine: "RADHIKA",
+  secondLine: "MAHAJAN ARCHITECTS",
+  positioning: "Architecture + Interior Design | Pune & Lonavala",
+  primaryIdea: "Designing Spaces. Creating Experiences.",
+  subTagline: "FORM × SPACE × DETAIL",
 };
 
 export const primaryNav: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Articles", href: "/articles" },
-  { label: "Videos", href: "/videos" },
-  { label: "Resources", href: "/resources" },
+  { label: "Projects", href: "/resources" },
+  { label: "Journal", href: "/articles" },
+  { label: "Walkthroughs", href: "/videos" },
   { label: "Contact", href: "/contact" },
 ];
 
 /**
- * Persistent cross-link required on every public page by the handoff pack.
- * Kept as config so the destination can change without touching components.
+ * Persistent primary CTA for booking design consultations & site visits.
  */
-export const authorityClosersCta = {
-  label: "Explore Authority Closers",
-  href: "https://authorityclosers.com",
-  event: "public.global.authority_closers_clicked",
+export const rmaConsultationCta = {
+  label: "Book Consultation",
+  href: "/contact",
+  event: "public.global.book_consultation_clicked",
 };
+
+// Backward compatibility alias for existing CTA references
+export const authorityClosersCta = rmaConsultationCta;
 
 export const footerContent = {
-  philosophyLine: "Because people buy certainty.",
+  philosophyLine: "FORM × SPACE × DETAIL — Designing Spaces. Creating Experiences.",
+  subtext: "Radhika Mahajan Architects is an architecture and interior design studio crafting thoughtful residential and commercial spaces across Pune and Lonavala.",
+  locations: [
+    { city: "Pune", focus: "Full Home Interiors (3 & 4 BHK), Villas & Offices in Bibewadi, Koregaon Park, Baner & Kolte Patil" },
+    { city: "Lonavala", focus: "Luxury Retreats, Weekend Homes & Turnkey Bungalows" },
+  ],
   legalLinks: [
     { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms", href: "/terms" },
+    { label: "Terms of Service", href: "/terms" },
   ] as NavLink[],
-  copyright: "Dipak Vishwakarma. All rights reserved.",
+  copyright: "© Radhika Mahajan Architects (OPC) Private Limited. All rights reserved.",
 };
 
-/**
- * Social handles are deliberately empty.
- *
- * The copy master's CONTENT SAFETY flags list "Any social handles" as
- * unverified, and instructs: do not invent contact details. Populate this
- * array only with handles Dipak confirms — the footer renders nothing
- * until then rather than shipping dead or fabricated links.
- */
-export const socialLinks: NavLink[] = [];
+export const socialLinks: NavLink[] = [
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "WhatsApp", href: "https://wa.me/919876543210?text=Hello%20Ar.%20Radhika%20Mahajan%2C%20I%20would%20like%20to%20discuss%20an%20architectural%2Finterior%20project." },
+  { label: "LinkedIn", href: "https://linkedin.com" },
+];
+

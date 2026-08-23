@@ -2,15 +2,15 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { DipakHero, dipakHeroContent } from "@/features/dipak-hero";
-import { DipakIdentityAct, identityContent } from "@/features/dipak-identity";
-import { DipakPresenceAct, presenceContent } from "@/features/dipak-presence";
-import { DipakMissionAct, missionContent } from "@/features/dipak-mission";
-import { DipakTopicsAct, topicsContent } from "@/features/dipak-topics";
-import { DipakThinkingAct, thinkingContent } from "@/features/dipak-thinking";
-import { DipakBridgeAct, bridgeContent } from "@/features/dipak-bridge";
+import { RmaHero, rmaHeroContent } from "@/features/rma-hero";
+import { RmaIdentityAct, identityContent } from "@/features/rma-identity";
+import { RmaPresenceAct, presenceContent } from "@/features/rma-presence";
+import { RmaMissionAct, missionContent } from "@/features/rma-mission";
+import { RmaTopicsAct, topicsContent } from "@/features/rma-topics";
+import { RmaThinkingAct, thinkingContent } from "@/features/rma-thinking";
+import { RmaBridgeAct, bridgeContent } from "@/features/rma-bridge";
 import { EditorialPreloader } from "@/features/site-chrome";
-import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
+import type { FeaturedArticle } from "@/features/rma-thinking/thinking.types";
 import { useHomeIntroTimeline } from "./useHomeIntroTimeline";
 import styles from "./home-intro-story.module.css";
 
@@ -46,9 +46,7 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
             aria-hidden="true"
           />
 
-
-
-          {/* Act 1: Belief & Philosophy (Hero - Luxury Magazine Cover) */}
+          {/* Act 1: Belief & Philosophy (Hero - Luxury Architectural Magazine Cover) */}
           <div className={styles.act1Wrapper} data-story-act1-wrapper="true">
             {/* Front of cover: Lighting & Sheen layers */}
             <div className={styles.act1PageShadow} data-story-page-shadow="true" aria-hidden="true" />
@@ -56,7 +54,7 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
             
             {/* Front content */}
             <div className={styles.act1FrontContent}>
-              <DipakHero content={dipakHeroContent} />
+              <RmaHero content={rmaHeroContent} />
             </div>
 
             {/* Reverse Under-Sheet: Realistic matte paper back with gold monogram seal */}
@@ -69,51 +67,52 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
                     <circle cx="60" cy="60" r="46" stroke="currentColor" strokeWidth="0.5" />
                   </svg>
                   <Image
-                    src="/branding/dipak-monogram-gold.webp"
-                    alt="Dipak Vishwakarma Monogram Signature"
+                    src="/branding/rma-logomark-gold.webp"
+                    alt="Radhika Mahajan Architects Monogram Seal"
                     width={64}
-                    height={42}
+                    height={52}
                     className={styles.sealMonogramImg}
                   />
                 </div>
-                <span className={styles.sealKicker}>AUTHORITY CLOSERS · ACT 01 / FOLIO</span>
+                <span className={styles.sealKicker}>RADHIKA MAHAJAN ARCHITECTS · ACT 01 / FOLIO</span>
               </div>
             </div>
           </div>
 
-          {/* Act 2: The Person & Credentials (Identity) */}
+          {/* Act 2: The Practice & Principal Architect (Identity) */}
           <div className={styles.act2Wrapper} data-story-act2-wrapper="true">
             {/* Dynamic cast shadow from the turning Act 1 cover */}
             <div className={styles.act2CastShadow} data-story-act2-castshadow="true" aria-hidden="true" />
-            <DipakIdentityAct content={identityContent} />
+            <RmaIdentityAct content={identityContent} />
           </div>
 
-          {/* Act 3: Presence & Authority Proof (Featured In) */}
+          {/* Act 3: Built Portfolio & Landmarks (Presence) */}
           <div className={styles.act3Wrapper} data-story-act3-wrapper="true">
-            <DipakPresenceAct content={presenceContent} />
+            <RmaPresenceAct content={presenceContent} />
           </div>
 
-          {/* Act 4: My Mission Manifesto */}
+          {/* Act 4: Studio Manifesto & 4 Pillars */}
           <div className={styles.act4Wrapper} data-story-act4-wrapper="true">
-            <DipakMissionAct content={missionContent} />
+            <RmaMissionAct content={missionContent} />
           </div>
         </div>
       </div>
 
-      {/* Act 5: What I Talk About Topic Index */}
+      {/* Act 5: Practice Areas & Spatial Capabilities */}
       <div className={styles.actSectionWrapper}>
-        <DipakTopicsAct content={topicsContent} />
+        <RmaTopicsAct content={topicsContent} />
       </div>
 
-      {/* Act 6: Latest Thinking (Videos + Articles) */}
+      {/* Act 6: Architectural Journal & Spatial Insights */}
       <div className={styles.actSectionWrapper}>
-        <DipakThinkingAct content={thinkingContent} articles={latestArticles} />
+        <RmaThinkingAct content={thinkingContent} articles={latestArticles} />
       </div>
 
-      {/* Act 7: Authority Closers Bridge & Final CTA */}
+      {/* Act 7: Spatial Consultation Bridge & Final CTA */}
       <div className={styles.actSectionWrapper}>
-        <DipakBridgeAct content={bridgeContent} />
+        <RmaBridgeAct content={bridgeContent} />
       </div>
     </div>
   );
 }
+

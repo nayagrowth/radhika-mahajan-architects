@@ -82,7 +82,7 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
       className={`${styles.preloaderSurface} ${dismissed ? styles.dismissed : ""}`}
       aria-hidden={dismissed ? "true" : "false"}
       role="progressbar"
-      aria-label="Loading Dipak Vishwakarma official folio"
+      aria-label="Loading Radhika Mahajan Architects official folio"
     >
       <div className={styles.brandCenter}>
         <div className={styles.monogramRing}>
@@ -90,12 +90,12 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
             <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
             <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.5" />
           </svg>
-          <span className={styles.monogramText}>DV</span>
+          <span className={styles.monogramText}>RM</span>
         </div>
 
         <div className={styles.brandWordmark}>
-          <span className={styles.brandName}>Dipak Vishwakarma</span>
-          <span className={styles.brandKicker}>The Certainty Builder™</span>
+          <span className={styles.brandName}>Radhika Mahajan Architects</span>
+          <span className={styles.brandKicker}>FORM × SPACE × DETAIL</span>
         </div>
 
         <div className={styles.progressBarContainer}>

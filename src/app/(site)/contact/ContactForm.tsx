@@ -7,16 +7,22 @@ import styles from "./contact.module.css";
 
 const INITIAL_STATE: ContactFormState = { status: "idle", message: "" };
 
-const TOPICS = [
-  "Speaking or keynote",
-  "Collaboration",
-  "Interview or podcast",
-  "Partnership",
-  "Certainty Checklist",
-  "Buyer Psychology Question Bank",
-  "Objection Diagnosis Sheet",
-  "High-Ticket Conversation Review",
-  "Something else",
+const PROJECT_TYPES = [
+  "Full Home Interior (3 BHK)",
+  "Full Home Interior (4 BHK)",
+  "Luxury Bungalow / Villa (Pune / Lonavala)",
+  "Modular Kitchen & Custom Wardrobes",
+  "Turnkey Civil Renovation",
+  "Commercial & Workspace Architecture",
+  "Complimentary 3D Consultation",
+  "Other Custom Architecture",
+];
+
+const BUDGET_RANGES = [
+  "₹15 Lakh – ₹25 Lakh",
+  "₹25 Lakh – ₹40 Lakh",
+  "₹40 Lakh – ₹75 Lakh",
+  "₹75 Lakh+",
 ];
 
 export function ContactForm() {
@@ -25,26 +31,35 @@ export function ContactForm() {
     INITIAL_STATE,
   );
 
-  // Resources page deep-links here with ?topic=… pre-selected.
   const searchParams = useSearchParams();
   const requestedTopic = searchParams.get("topic");
   const defaultTopic =
-    requestedTopic && TOPICS.includes(requestedTopic) ? requestedTopic : "";
+    requestedTopic && PROJECT_TYPES.includes(requestedTopic) ? requestedTopic : "";
 
   if (state.status === "success") {
     return (
       <div className={styles.successPanel} role="status">
-        <span className={styles.successMark} aria-hidden="true">
-          ✦
-        </span>
+        <span className={styles.successMark} aria-hidden="true">✦</span>
+        <h3 style={{ margin: "0 0 0.8rem", fontFamily: "var(--font-family-serif)", color: "var(--gold)" }}>Consultation Request Received</h3>
         <p className={styles.successText}>{state.message}</p>
+        <div style={{ marginTop: "1.5rem" }}>
+          <a
+            href="https://wa.me/919876543210?text=Hello%20Ar.%20Radhika%20Mahajan%2C%20I%20just%20submitted%20a%20consultation%20request%20on%20your%20website."
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.submit}
+            style={{ display: "inline-flex", background: "#25D366", color: "#ffffff" }}
+          >
+            Direct WhatsApp Connect →
+          </a>
+        </div>
       </div>
     );
   }
 
   return (
     <form className={styles.form} action={formAction} noValidate>
-      {/* Honeypot — visually hidden, never focusable by keyboard. */}
+      {/* Honeypot */}
       <div className={styles.honeypot} aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -52,53 +67,77 @@ export function ContactForm() {
 
       <div className={styles.fieldRow}>
         <Field
-          label="Name"
+          label="Your Name"
           name="name"
           required
           autoComplete="name"
+          placeholder="e.g. Anand Sharma"
           error={state.fieldErrors?.name}
         />
         <Field
-          label="Email"
+          label="Email Address"
           name="email"
           type="email"
           required
           autoComplete="email"
+          placeholder="anand@example.com"
           error={state.fieldErrors?.email}
         />
       </div>
 
       <div className={styles.fieldRow}>
-        <Field label="Phone (optional)" name="phone" type="tel" autoComplete="tel" />
         <Field
-          label="Company / Organisation (optional)"
-          name="company"
-          autoComplete="organization"
+          label="Phone Number (for WhatsApp updates)"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          placeholder="+91 98765 43210"
+        />
+        <Field
+          label="Property Location / Society"
+          name="locality"
+          placeholder="e.g. Kolte Patil / Bibewadi / Lonavala"
         />
       </div>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="topic">
-          What would you like to discuss?
-        </label>
-        <select
-          className={styles.select}
-          id="topic"
-          name="topic"
-          defaultValue={defaultTopic}
-        >
-          <option value="">Select a subject</option>
-          {TOPICS.map((topic) => (
-            <option key={topic} value={topic}>
-              {topic}
-            </option>
-          ))}
-        </select>
+      <div className={styles.fieldRow}>
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="projectType">
+            Project Scope
+          </label>
+          <select
+            className={styles.select}
+            id="projectType"
+            name="projectType"
+            defaultValue={defaultTopic}
+          >
+            <option value="">Select Project Type</option>
+            {PROJECT_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="budget">
+            Estimated Budget
+          </label>
+          <select className={styles.select} id="budget" name="budget">
+            <option value="">Select Range</option>
+            {BUDGET_RANGES.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className={styles.field}>
         <label className={styles.label} htmlFor="message">
-          Message <span className={styles.required}>*</span>
+          Project Vision & Requirements <span className={styles.required}>*</span>
         </label>
         <textarea
           className={`${styles.textarea} ${
@@ -106,7 +145,8 @@ export function ContactForm() {
           }`}
           id="message"
           name="message"
-          rows={6}
+          rows={5}
+          placeholder="Tell us about your flat possession date, design preferences, or specific architectural requirements..."
           required
           aria-invalid={Boolean(state.fieldErrors?.message)}
           aria-describedby={state.fieldErrors?.message ? "message-error" : undefined}
@@ -125,7 +165,7 @@ export function ContactForm() {
       ) : null}
 
       <button className={styles.submit} type="submit" disabled={pending}>
-        {pending ? "Sending…" : "Send Message"}
+        {pending ? "Submitting Consultation…" : "Book Design Consultation"}
         <span aria-hidden="true">→</span>
       </button>
     </form>
@@ -138,10 +178,11 @@ interface FieldProps {
   type?: string;
   required?: boolean;
   autoComplete?: string;
+  placeholder?: string;
   error?: string;
 }
 
-function Field({ label, name, type = "text", required, autoComplete, error }: FieldProps) {
+function Field({ label, name, type = "text", required, autoComplete, placeholder, error }: FieldProps) {
   return (
     <div className={styles.field}>
       <label className={styles.label} htmlFor={name}>
@@ -154,6 +195,7 @@ function Field({ label, name, type = "text", required, autoComplete, error }: Fi
         type={type}
         required={required}
         autoComplete={autoComplete}
+        placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
       />

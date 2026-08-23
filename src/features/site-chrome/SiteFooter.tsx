@@ -12,18 +12,16 @@ import styles from "./site-chrome.module.css";
 const EVENT_SCHEMA_VERSION = "1";
 
 export function SiteFooter() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <div className={styles.footerInner}>
         <div className={styles.footerBrandBlock}>
-          <Link className={styles.footerBrandLink} href="/" aria-label="Dipak Vishwakarma — home">
+          <Link className={styles.footerBrandLink} href="/" aria-label="Radhika Mahajan Architects — home">
             <Image
-              src="/branding/dipak-signature-full-gold.webp"
-              alt="Dipak Vishwakarma"
-              width={220}
-              height={92}
+              src="/branding/rma-signature-full-gold.webp"
+              alt="Radhika Mahajan Architects"
+              width={240}
+              height={76}
               className={styles.footerSignatureImg}
             />
           </Link>
@@ -32,7 +30,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.footerNavBlock}>
-          <span className={styles.footerLabel}>Navigate</span>
+          <span className={styles.footerLabel}>Studio &amp; Practice</span>
           <ul className={styles.footerNavList}>
             {primaryNav.map((link) => (
               <li key={link.href}>
@@ -45,24 +43,22 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.footerCtaBlock}>
-          <span className={styles.footerLabel}>Sales training &amp; programs</span>
-          <a
+          <span className={styles.footerLabel}>Consultation &amp; Enquiries</span>
+          <Link
             className={styles.footerCta}
             href={authorityClosersCta.href}
-            target="_blank"
-            rel="noopener noreferrer"
             data-ac-event={authorityClosersCta.event}
             data-ac-event-schema={EVENT_SCHEMA_VERSION}
             data-ac-surface="site-footer"
           >
             {authorityClosersCta.label}
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
 
           {socialLinks.length > 0 ? (
             <ul className={styles.socialList}>
               {socialLinks.map((social) => (
-                <li key={social.href}>
+                <li key={social.label}>
                   <a
                     className={styles.footerLink}
                     href={social.href}
@@ -79,10 +75,9 @@ export function SiteFooter() {
       </div>
 
       <div className={styles.footerBaseline}>
-        <span>
-          Copyright © {year} {footerContent.copyright}
-        </span>
+        <span>{footerContent.copyright}</span>
       </div>
     </footer>
   );
 }
+

@@ -11,3 +11,9 @@ deploy.tar.gz
 *.tsbuildinfo
 build.tar.gz
 *.tar.gz
+pdf_pages/
+extracted_pdf_images/
+google_doc_export.txt
+google_doc_text.txt
+pdf_text.txt
+

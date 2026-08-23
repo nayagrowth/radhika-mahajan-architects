@@ -1,50 +1,26 @@
-# AGENTS.md — Dipak Public Hero
+# AGENTS.md — Radhika Mahajan Architects (RMA) Web Platform
 
 ## Scope
-This repository exists to ship one production-quality public hero surface. It is deliberately small but structurally compatible with the future Authority Closers monorepo.
+This repository houses the official public web experience for **Radhika Mahajan Architects (RMA)**.
 
-## Architecture rules
-1. `src/app` composes routes. It does not contain feature logic.
-2. `src/features/dipak-hero` owns the hero component, content contract, assets, and scoped CSS.
-3. Hero code is a Server Component by default. Do not add `"use client"` unless interaction truly requires it.
-4. Do not add state management for this feature.
-5. Do not add a backend/database. Future platform business logic lives in the Authority Closers FastAPI service, not here.
-6. Do not add an analytics vendor. Preserve `data-ac-event` attributes; a future shared telemetry adapter will consume them.
-7. Do not add Tailwind, shadcn, Framer Motion, GSAP, icon libraries, or a CMS for one hero. CSS Modules + semantic HTML are sufficient and reduce future integration coupling.
-8. Keep assets local and use `next/image` for the LCP portrait.
-9. Never couple the hero to Authority Closers database entities, auth, tenant state, AI models, or payment logic.
-10. CTA URLs may come from environment/config. Never hard-code a fake or dead destination merely to make a button clickable.
+## Architecture
+1. `src/app`: Next.js App Router composition, metadata, layout, schema.org JSON-LD, sitemap, and robots.
+2. `src/features/rma-*`: Feature modules for each narrative act and dedicated domain surface:
+   - `rma-hero`: Act 1 luxury cover and editorial statement
+   - `rma-identity`: Act 2 credentials, bio, and key statistics
+   - `rma-presence`: Act 3 landmark developments and proof
+   - `rma-mission`: Act 4 4-pillar studio manifesto
+   - `rma-topics`: Act 5 practice areas and spatial capabilities
+   - `rma-thinking`: Act 6 architectural journal & spatial walkthroughs
+   - `rma-bridge`: Act 7 consultation bridge & intake CTA
+   - `rma-about`: Studio story, philosophy, and history
+   - `rma-media`: Built project registry and media contracts
+3. `src/features/home-intro-story`: GSAP ScrollTrigger pinned timeline orchestrating Acts 1–4, followed by flowing Acts 5–7.
+4. `src/content/articles`: Markdown-based architectural and spatial thought leadership articles.
 
-## Performance rules
-- No client JavaScript from the hero unless it creates measurable user value.
-- Portrait must use Next Image optimization with correct `sizes` and high-priority LCP loading.
-- No layout shift from image sizing.
-- No unnecessary third-party requests.
-- Keep the above-the-fold DOM shallow.
-- Respect `prefers-reduced-motion`.
-
-## Portability target
-Later migration should be approximately:
-
-```text
-this repo root
-  -> authority-closers/apps/dipak-web/
-```
-
-The `src/features/dipak-hero` folder should move unchanged.
-
-Only extract a shared package when a second real consumer exists.
-
-## Required verification
-Run:
-
+## Verification
 ```bash
-npm install
 npm run lint
 npm run typecheck
 npm run build
-npm start
-curl http://localhost:3000/api/health
 ```
-
-Then visually check at minimum 390x844, 768x1024, 1440x900, and 1920x1080.

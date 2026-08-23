@@ -28,15 +28,41 @@
 
 .resourceCard {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 1.4rem;
-  padding: clamp(1.75rem, 4vw, 3rem);
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1.2rem;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
   background: var(--paper);
-  transition: background var(--dur-base) var(--ease-out-editorial);
+  transition: background var(--dur-base) var(--ease-out-editorial), transform var(--dur-base) var(--ease-out-editorial);
 }
 
 .resourceCard:hover {
   background: var(--paper-raised);
+}
+
+.cardImageWrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--paper-sunken);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out-editorial);
+}
+
+.resourceCard:hover .cardImage {
+  transform: scale(1.04);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .resourceIndex {
@@ -46,9 +72,20 @@
   color: var(--gold-deep);
 }
 
+.resourceCategory {
+  font-family: var(--font-family-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 0.2rem 0.6rem;
+  background: var(--beige-wash);
+  border-radius: 2px;
+}
+
 .resourceBody {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.65rem;
   align-content: start;
 }
 

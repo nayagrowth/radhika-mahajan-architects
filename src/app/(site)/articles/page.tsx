@@ -7,9 +7,9 @@ import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./articles.module.css";
 
 export const metadata: Metadata = {
-  title: "Articles by Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  title: "Design Journal & Architectural Essays — Radhika Mahajan Architects | Pune & Lonavala",
   description:
-    "Explore strategic articles by Dipak Vishwakarma, Founder of Authority Closers, covering sales psychology, communication, high-ticket deal structure, and AI in sales.",
+    "Explore architectural essays, 3D spatial principles, material science, and turnkey construction insights by Ar. Radhika Mahajan, Principal Architect at RMA.",
 };
 
 export default function ArticlesPage() {
@@ -19,17 +19,17 @@ export default function ArticlesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Articles by Dipak Vishwakarma"
+        eyebrow="Architectural Journal"
         index="01"
-        headline="Principles & Frameworks by Dipak Vishwakarma"
+        headline="Principles & Insights from the Studio"
         body={[
-          "Tactical frameworks on sales psychology, objection elimination, communication, personal branding, AI, and entrepreneurship by Dipak Vishwakarma, Founder of Authority Closers.",
+          "Essays on spatial planning, 3D visualization, material durability, and the 45-day turnkey blueprint by Ar. Radhika Mahajan.",
         ]}
         aside={
           <div className={styles.heroMediaFrame}>
             <Image
-              src="/media/03_dsc06998.webp"
-              alt="Dipak Vishwakarma deep-work and writing"
+              src="/media/projects/rma-project-a02.webp"
+              alt="Radhika Mahajan Architects Design Journal"
               width={1000}
               height={750}
               sizes="(max-width: 900px) 70vw, 24rem"
@@ -44,14 +44,10 @@ export default function ArticlesPage() {
         <div className={editorial.container}>
           {articles.length === 0 ? (
             <p className={styles.emptyState}>
-              Building a growing library of practical ideas, frameworks and
-              field notes. Start with the latest thinking below.
+              Building a growing library of architectural ideas and field notes.
             </p>
           ) : (
             <>
-              {/* Lead article — large feature slot. Card is NOT a link; only
-                  the title and read-cue are interactive so clicking text/excerpt
-                  doesn't accidentally navigate. */}
               <Reveal>
                 <div className={styles.leadCard}>
                   <div className={styles.leadMeta}>
@@ -79,7 +75,6 @@ export default function ArticlesPage() {
               <ul className={styles.articleLedger}>
                 {rest.map((article, index) => (
                   <Reveal as="li" key={article.slug} index={index}>
-                    {/* Card is a div — only title and date/arrow area link */}
                     <div className={styles.ledgerCard}>
                       <span className={styles.ledgerIndex}>
                         {String(index + 2).padStart(2, "0")}

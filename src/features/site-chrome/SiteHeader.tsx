@@ -66,12 +66,12 @@ export function SiteHeader() {
         className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
         data-site-header="true"
       >
-        <Link className={styles.brandLink} href="/" aria-label="Dipak Vishwakarma — home">
+        <Link className={styles.brandLink} href="/" aria-label="Radhika Mahajan Architects — home">
           <Image
-            src="/branding/dipak-signature-full-black.webp"
-            alt="Dipak Vishwakarma"
-            width={180}
-            height={76}
+            src="/branding/rma-logo-horizontal-blk.webp"
+            alt="Radhika Mahajan Architects"
+            width={210}
+            height={67}
             className={styles.headerSignatureImg}
             priority
           />

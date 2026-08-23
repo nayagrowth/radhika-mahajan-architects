@@ -8,7 +8,6 @@ import {
   getArticleBySlug,
   formatArticleDate,
 } from "@/lib/articles";
-import { authorityClosersCta } from "@/features/site-chrome";
 import { ProseBody } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "../articles.module.css";
@@ -29,9 +28,9 @@ export async function generateMetadata({
 
   if (!article) return { title: "Article not found" };
 
-  const canonicalUrl = `https://dipakvishwakarma.com/articles/${article.slug}`;
-  const seoTitle = `${article.title} — Dipak Vishwakarma | Founder of Authority Closers`;
-  const seoDescription = `${article.excerpt} Read this framework by Dipak Vishwakarma, Founder of Authority Closers and High-Ticket Sales Expert.`;
+  const canonicalUrl = `https://rma.preview.nayagrowth.com/articles/${article.slug}`;
+  const seoTitle = `${article.title} — Ar. Radhika Mahajan | Radhika Mahajan Architects`;
+  const seoDescription = `${article.excerpt} Read this architectural insight by Ar. Radhika Mahajan, Founder & Principal Architect at RMA.`;
 
   return {
     title: seoTitle,
@@ -45,14 +44,14 @@ export async function generateMetadata({
       url: canonicalUrl,
       type: "article",
       publishedTime: article.date,
-      authors: ["https://dipakvishwakarma.com"],
-      siteName: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+      authors: ["https://rma.preview.nayagrowth.com"],
+      siteName: "Radhika Mahajan Architects — Architecture & Interior Design Studio",
       images: [
         {
-          url: article.coverImage || "/social/dipak-og-default-1200x630.jpg",
+          url: article.coverImage || "/og-rma-preview.png",
           width: 1200,
           height: 630,
-          alt: `${article.title} — Dipak Vishwakarma`,
+          alt: `${article.title} — Ar. Radhika Mahajan`,
         },
       ],
     },
@@ -60,7 +59,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: seoTitle,
       description: seoDescription,
-      images: [article.coverImage || "/social/dipak-og-default-1200x630.jpg"],
+      images: [article.coverImage || "/og-rma-preview.png"],
     },
   };
 }
@@ -71,7 +70,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   if (!article) notFound();
 
-  // "More thinking" — up to three other posts, newest first.
   const related = getAllArticles()
     .filter((candidate) => candidate.slug !== article.slug)
     .slice(0, 3);
@@ -84,30 +82,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     datePublished: article.date,
     author: {
       "@type": "Person",
-      name: "Dipak Vishwakarma",
-      jobTitle: "Founder of Authority Closers | High-Ticket Sales Expert",
+      name: "Ar. Radhika Mahajan",
+      jobTitle: "Principal Architect & Founder",
       worksFor: {
         "@type": "Organization",
-        name: "Authority Closers",
-        url: "https://authorityclosers.com",
+        name: "Radhika Mahajan Architects (OPC) Private Limited",
+        url: "https://rma.preview.nayagrowth.com",
       },
-      url: "https://dipakvishwakarma.com",
-      sameAs: [
-        "https://www.linkedin.com/in/dipakvishwakarma/",
-        "https://twitter.com/dipakvishwa",
-        "https://www.youtube.com/@dipakvishwakarma",
-      ],
+      url: "https://rma.preview.nayagrowth.com",
     },
     publisher: {
-      "@type": "Person",
-      name: "Dipak Vishwakarma",
-      jobTitle: "Founder of Authority Closers | High-Ticket Sales Expert",
-      url: "https://dipakvishwakarma.com",
+      "@type": "Organization",
+      name: "Radhika Mahajan Architects",
+      url: "https://rma.preview.nayagrowth.com",
     },
-    mainEntityOfPage: `https://dipakvishwakarma.com/articles/${article.slug}`,
+    mainEntityOfPage: `https://rma.preview.nayagrowth.com/articles/${article.slug}`,
     image: article.coverImage
-      ? `https://dipakvishwakarma.com${article.coverImage}`
-      : "https://dipakvishwakarma.com/social/dipak-og-default-1200x630.jpg",
+      ? `https://rma.preview.nayagrowth.com${article.coverImage}`
+      : "https://rma.preview.nayagrowth.com/og-rma-preview.png",
   };
 
   return (
@@ -137,9 +129,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <h1 className={styles.postTitle}>{article.title}</h1>
 
           <div className={styles.bylineRow}>
-            <span className={styles.bylineName}>By Dipak Vishwakarma</span>
+            <span className={styles.bylineName}>By Ar. Radhika Mahajan</span>
             <span className={styles.bylineSep}>·</span>
-            <span className={styles.bylineRole}>Founder of Authority Closers | High-Ticket Sales Expert</span>
+            <span className={styles.bylineRole}>Principal Architect | Radhika Mahajan Architects</span>
           </div>
 
           {article.excerpt ? (
@@ -160,18 +152,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <section className={styles.authorBox} aria-label="About the Author">
           <div className={styles.authorBoxMeta}>
             <span className={styles.authorBoxLabel}>ABOUT THE AUTHOR</span>
-            <h3 className={styles.authorBoxName}>Dipak Vishwakarma</h3>
-            <p className={styles.authorBoxRole}>Founder of Authority Closers | High-Ticket Sales Expert</p>
+            <h3 className={styles.authorBoxName}>Ar. Radhika Mahajan</h3>
+            <p className={styles.authorBoxRole}>Founder & Principal Architect | RMA</p>
           </div>
           <p className={styles.authorBoxBio}>
-            Dipak Vishwakarma works across sales education, buyer psychology, communication, and high-ticket deal architecture, developing practical frameworks that help founders and sales professionals replace pressure with certainty.
+            Ar. Radhika Mahajan is an architect and interior designer with 35+ completed projects across Pune and Lonavala. She specializes in 3D spatial planning, full home turnkey interiors (3 & 4 BHKs), luxury weekend retreats, and climate-responsive architecture.
           </p>
           <div className={styles.authorSignatureWrap}>
             <Image
-              src="/branding/dipak-signature-full-black.webp"
-              alt="Dipak Vishwakarma Signature"
-              width={200}
-              height={84}
+              src="/branding/rma-signature-full-black.webp"
+              alt="Radhika Mahajan Architects Signature"
+              width={220}
+              height={70}
               className={styles.authorSignatureImg}
             />
           </div>
@@ -179,26 +171,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <aside className={styles.postCta}>
           <p className={styles.postCtaText}>
-            Want structured sales learning and practice?
+            Ready to design your residence or luxury retreat?
           </p>
-          <a
+          <Link
             className={editorial.ctaPrimary}
-            href={authorityClosersCta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-ac-event={authorityClosersCta.event}
+            href="/contact"
+            data-ac-event="public.article.book_consultation_clicked"
             data-ac-surface="article-footer"
           >
-            {authorityClosersCta.label}
+            Book Design Consultation
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </aside>
       </div>
 
       {related.length > 0 ? (
         <section className={`${editorial.section} ${editorial.sectionSunken}`}>
           <div className={editorial.container}>
-            <h2 className={styles.relatedHeading}>More thinking by Dipak Vishwakarma</h2>
+            <h2 className={styles.relatedHeading}>More from the Architectural Journal</h2>
             <ul className={styles.relatedGrid}>
               {related.map((item) => (
                 <li key={item.slug}>

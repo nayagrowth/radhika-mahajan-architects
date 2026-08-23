@@ -1,35 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
-import { authorityClosersCta, socialLinks } from "@/features/site-chrome";
+import { socialLinks } from "@/features/site-chrome";
 import { PageHero } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import { ContactForm } from "./ContactForm";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact Dipak Vishwakarma — Founder of Authority Closers",
+  title: "Book Design Consultation — Radhika Mahajan Architects | Pune & Lonavala",
   description:
-    "Get in touch with Dipak Vishwakarma, Founder of Authority Closers and High-Ticket Sales Expert, for keynotes, advisory, partnerships, and sales training.",
+    "Schedule a 3D architectural consultation, site visit, or turnkey interior enquiry with Ar. Radhika Mahajan and the RMA team in Pune & Lonavala.",
 };
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow="Consultation & Intake"
         index="01"
-        headline="Start a conversation"
+        headline="Start your spatial transformation"
         body={[
-          "For speaking, collaborations, interviews, partnerships or questions related to Dipak’s work, use the form below.",
-          "For sales training, learning programs or Authority Closers, use the Authority Closers link.",
+          "Whether you are taking possession of a new 3/4 BHK in Pune, designing a private retreat in Lonavala, or remodeling an existing space, we invite you to connect with our studio.",
+          "Reserve a complimentary 3D design consultation and site visit below.",
         ]}
       />
 
       <section className={editorial.section}>
         <div className={`${editorial.container} ${styles.contactGrid}`}>
           <div className={styles.formColumn}>
-            {/* useSearchParams needs a Suspense boundary during prerender. */}
             <Suspense fallback={<div className={styles.formSkeleton} />}>
               <ContactForm />
             </Suspense>
@@ -39,8 +38,8 @@ export default function ContactPage() {
             <div className={styles.portraitBlock}>
               <Image
                 className={styles.portrait}
-                src="/media/09_screenshot_2026-08-08_at_10.33.36_pm.png"
-                alt="Dipak Vishwakarma on a call"
+                src="/media/projects/rma-project-a01.webp"
+                alt="Radhika Mahajan Architects Studio"
                 width={800}
                 height={1000}
                 sizes="(max-width: 900px) 50vw, 22rem"
@@ -49,29 +48,35 @@ export default function ContactPage() {
             </div>
 
             <div className={styles.asideBlock}>
-              <span className={styles.asideLabel}>Sales training &amp; programs</span>
+              <span className={styles.asideLabel}>Direct Studio Coordinate</span>
               <p className={styles.asideText}>
-                Looking for sales training or programs?
+                Prefer instant WhatsApp connectivity or direct discussion?
               </p>
               <a
                 className={editorial.ctaSecondary}
-                href={authorityClosersCta.href}
+                href="https://wa.me/919876543210?text=Hello%20Ar.%20Radhika%20Mahajan%2C%20I%20would%20like%20to%20schedule%20a%20site%20visit%20and%20design%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
-                data-ac-event={authorityClosersCta.event}
-                data-ac-surface="contact-aside"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
               >
-                {authorityClosersCta.label}
+                <span>WhatsApp Direct</span>
                 <span aria-hidden="true">→</span>
               </a>
             </div>
 
+            <div className={styles.asideBlock}>
+              <span className={styles.asideLabel}>Service Coverage</span>
+              <p className={styles.asideText}>
+                Active site coverage across Pune (Bibewadi, Koregaon Park, Baner, Kothrud, Kolte Patil, Godrej Infinity) and Lonavala.
+              </p>
+            </div>
+
             {socialLinks.length > 0 ? (
               <div className={styles.asideBlock}>
-                <span className={styles.asideLabel}>Elsewhere</span>
+                <span className={styles.asideLabel}>Follow the Studio</span>
                 <ul className={styles.socialList}>
                   {socialLinks.map((social) => (
-                    <li key={social.href}>
+                    <li key={social.label}>
                       <a
                         className={styles.socialLink}
                         href={social.href}
@@ -88,10 +93,9 @@ export default function ContactPage() {
             ) : null}
 
             <div className={styles.asideBlock}>
-              <span className={styles.asideLabel}>Response</span>
+              <span className={styles.asideLabel}>Committed Turnaround</span>
               <p className={styles.asideText}>
-                Every message is read personally. Please include enough context
-                for a useful reply.
+                Every enquiry is reviewed directly by Ar. Radhika Mahajan. We respond with initial feasibility feedback within 24 hours.
               </p>
             </div>
           </aside>

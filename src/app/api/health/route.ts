@@ -1,16 +1,9 @@
-export const dynamic = "force-static";
+import { NextResponse } from "next/server";
 
-export function GET() {
-  return Response.json(
-    {
-      status: "ok",
-      service: "dipak-web",
-      surface: "public-hero",
-    },
-    {
-      headers: {
-        "Cache-Control": "no-store",
-      },
-    },
-  );
+export async function GET() {
+  return NextResponse.json({
+    status: "healthy",
+    service: "rma-web",
+    timestamp: new Date().toISOString(),
+  });
 }

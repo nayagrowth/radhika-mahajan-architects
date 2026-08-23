@@ -1,29 +1,17 @@
-# Deployment Contract
+# DEPLOYMENT.md — RMA Web Platform
 
-## Recommended early deployment
-Run this Next.js public surface as its own container/process behind the same reverse proxy used by the broader Authority Closers infrastructure.
+## Infrastructure
+- **Server**: `93.127.199.24` (`nivi`)
+- **Routing**: Traefik with automatic TLS (`letsencrypt`)
+- **Domain**: `rma.preview.nayagrowth.com`
+- **Container**: `rma-web` (port 3000, `proxy_net`)
+- **Path**: `/home/nivi/apps/rma-web`
 
-Suggested topology:
-
-```text
-Internet
-  -> Cloudflare DNS/CDN (optional)
-  -> Caddy/Nginx on KVM2
-  -> dipak-web container :3100 loopback
-```
-
-The container only exposes `127.0.0.1:3100` on the host by default. Terminate TLS at the reverse proxy.
-
-## Commands
-
-```bash
-docker compose build
-docker compose up -d
-curl http://127.0.0.1:3100/api/health
-```
-
-## Why standalone output
-Next.js `output: "standalone"` creates a traced minimal runtime suitable for Docker/VPS deployment. This keeps the public web process isolated from the future FastAPI platform service while allowing both to coexist on the same VPS.
-
-## Monorepo note
-When this moves under `apps/dipak-web`, revisit `outputFileTracingRoot` only if standalone output needs files from workspace packages outside the app directory. Do not add it prematurely.
+## Automated CI/CD
+Push to `main` branch executes `.github/workflows/deploy.yml`:
+1. Checks out repo & installs dependencies.
+2. Runs linting and typecheck.
+3. Builds standalone Next.js production bundle.
+4. Rsyncs bundle & compose files to `/home/nivi/apps/rma-web`.
+5. Rebuilds and restarts container.
+6. Verifies live health endpoint at `https://rma.preview.nayagrowth.com/api/health`.

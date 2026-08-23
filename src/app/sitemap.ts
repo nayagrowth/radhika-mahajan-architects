@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/articles";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://dipakvishwakarma.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://rma.preview.nayagrowth.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Single unified source — blog is merged into articles

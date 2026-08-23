@@ -18,48 +18,35 @@ const sansFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dipakvishwakarma.com"),
-  title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  metadataBase: new URL("https://rma.preview.nayagrowth.com"),
+  title: "Radhika Mahajan Architects — Ar. Radhika Mahajan | Architecture & Interiors Pune & Lonavala",
   description:
-    "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
+    "Radhika Mahajan Architects (RMA) is a premier architecture & turnkey interior design studio by Ar. Radhika Mahajan. Form × Space × Detail across 35+ projects in Pune & Lonavala.",
   alternates: {
-    canonical: "https://dipakvishwakarma.com/",
+    canonical: "https://rma.preview.nayagrowth.com/",
   },
   openGraph: {
     type: "website",
-    url: "https://dipakvishwakarma.com/",
-    siteName: "Dipak Vishwakarma",
-    title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+    url: "https://rma.preview.nayagrowth.com/",
+    siteName: "Radhika Mahajan Architects",
+    title: "Radhika Mahajan Architects — Ar. Radhika Mahajan | Architecture & Interiors Pune & Lonavala",
     description:
-      "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
+      "Form × Space × Detail. 35+ delivered residences, luxury villas, and turnkey interiors across Pune & Lonavala.",
     images: [
       {
-        url: "/social/dipak-og-default-1200x630.jpg",
+        url: "/og-rma-preview.png",
         width: 1200,
         height: 630,
-        alt: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
-      },
-      {
-        url: "/social/dipak-og-retina-2400x1260.jpg",
-        width: 2400,
-        height: 1260,
-        alt: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+        alt: "Radhika Mahajan Architects — Form × Space × Detail",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+    title: "Radhika Mahajan Architects — Ar. Radhika Mahajan",
     description:
-      "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
-    images: [
-      {
-        url: "/social/dipak-og-default-1200x630.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
-      },
-    ],
+      "Form × Space × Detail. 35+ delivered residences, luxury villas, and turnkey interiors across Pune & Lonavala.",
+    images: ["/og-rma-preview.png"],
   },
 };
 
@@ -67,16 +54,16 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
-  themeColor: "#f4f1ea",
+  themeColor: "#f4f8fb",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${serifFont.variable} ${sansFont.variable}`}>
       <head>
-        {/* Preload High Priority LCP Assets */}
-        <link rel="preload" href="/hero/dipak-seated.webp" as="image" type="image/webp" />
-        <link rel="preload" href="/hero/enso-brush-master.webp" as="image" type="image/webp" />
+        {/* Preload High Priority Brand Assets */}
+        <link rel="preload" href="/branding/rma-logo-horizontal-blk.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/branding/rma-logomark-gold.webp" as="image" type="image/webp" />
 
         {/* NayaGrowth Tracking & GTag Bootstrap */}
         <script
@@ -86,11 +73,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {/* NayaGrowth Form Capture Script */}
         <script
           src="https://api.nayagrowth.com/capture/v1.js"
-          data-naya-connector="src_authorityclosers_web"
+          data-naya-connector="src_rma_web"
           async
         />
 
-        {/* Structured Data / JSON-LD for Google Search & Entity Knowledge Graph */}
+        {/* Structured Data / JSON-LD for Google Search & Architectural Entity Knowledge Graph */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -98,32 +85,51 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
               "@context": "https://schema.org",
               "@graph": [
                 {
-                  "@type": "Person",
-                  "@id": "https://dipakvishwakarma.com/#person",
-                  name: "Dipak Vishwakarma",
-                  jobTitle: "Founder & The Certainty Builder",
-                  worksFor: {
-                    "@type": "Organization",
-                    name: "Authority Closers",
-                    url: "https://authorityclosers.com",
+                  "@type": "ArchitecturalFirm",
+                  "@id": "https://rma.preview.nayagrowth.com/#firm",
+                  name: "Radhika Mahajan Architects",
+                  alternateName: "RMA",
+                  legalName: "Radhika Mahajan (OPC) Private Limited",
+                  slogan: "Designing Spaces. Creating Experiences.",
+                  url: "https://rma.preview.nayagrowth.com",
+                  logo: "https://rma.preview.nayagrowth.com/branding/rma-logo-horizontal-blk.png",
+                  image: "https://rma.preview.nayagrowth.com/og-rma-preview.png",
+                  founder: {
+                    "@type": "Person",
+                    name: "Ar. Radhika Mahajan",
+                    jobTitle: "Principal Architect & Founder",
+                    url: "https://rma.preview.nayagrowth.com/about",
                   },
-                  url: "https://dipakvishwakarma.com",
-                  image: "https://dipakvishwakarma.com/social/dipak-og-default-1200x630.jpg",
-                  sameAs: [
-                    "https://www.linkedin.com/in/dipakvishwakarma/",
-                    "https://twitter.com/dipakvishwa",
-                    "https://www.youtube.com/@dipakvishwakarma",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Pune",
+                    addressRegion: "Maharashtra",
+                    addressCountry: "IN",
+                  },
+                  areaServed: [
+                    "Pune",
+                    "Bibewadi",
+                    "Koregaon Park",
+                    "Baner",
+                    "Kothrud",
+                    "Lonavala",
+                    "Maharashtra",
                   ],
-                  description:
-                    "Helping founders and sales teams build trust, handle objections, and close high-value clients.",
+                  knowsAbout: [
+                    "Architecture",
+                    "Residential Interior Design",
+                    "Turnkey Interior Execution",
+                    "3D Spatial Planning",
+                    "Villa Architecture",
+                  ],
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://dipakvishwakarma.com/#website",
-                  url: "https://dipakvishwakarma.com",
-                  name: "Dipak Vishwakarma",
+                  "@id": "https://rma.preview.nayagrowth.com/#website",
+                  url: "https://rma.preview.nayagrowth.com",
+                  name: "Radhika Mahajan Architects",
                   publisher: {
-                    "@id": "https://dipakvishwakarma.com/#person",
+                    "@id": "https://rma.preview.nayagrowth.com/#firm",
                   },
                 },
               ],
