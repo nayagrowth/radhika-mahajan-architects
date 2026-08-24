@@ -16,15 +16,12 @@ import { marked } from "marked";
 const ARTICLES_DIR = path.join(process.cwd(), "src", "content", "articles");
 
 export const ARTICLE_CATEGORIES = [
-  "Sales",
-  "Buyer Psychology",
-  "Communication",
-  "Personal Branding",
-  "AI",
-  "Entrepreneurship",
-  "Startups",
-  "Public Speaking",
-  "High-Ticket Sales",
+  "Design Philosophy",
+  "Project Execution",
+  "Design Process",
+  "Materials & Craft",
+  "Architecture",
+  "Budget & Planning",
 ] as const;
 
 export type ArticleCategory = (typeof ARTICLE_CATEGORIES)[number];

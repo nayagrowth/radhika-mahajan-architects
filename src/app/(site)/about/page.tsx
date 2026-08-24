@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { aboutContent } from "@/features/rma-about/about.content";
-import { authorityClosersCta } from "@/features/site-chrome";
 import { PageHero, SectionHeader, Reveal, BackgroundMedia } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./about.module.css";
@@ -28,10 +27,10 @@ export default function AboutPage() {
           <div className={styles.heroPortraitFrame}>
             <Image
               className={styles.heroPortrait}
-              src="/media/projects/rma-project-a01.webp"
-              alt="Radhika Mahajan Architects"
+              src="/media/radhika/radhika-about-bio.webp"
+              alt="Ar. Radhika Mahajan — Founder & Principal Architect"
               width={1200}
-              height={900}
+              height={1400}
               sizes="(max-width: 900px) 60vw, 30vw"
               quality={90}
               priority
@@ -108,7 +107,7 @@ export default function AboutPage() {
         aria-labelledby="philosophy-heading"
       >
         <BackgroundMedia
-          poster="/media/02_screenshot_2026-07-29_at_4.45.57_pm__1_.png"
+          poster="/media/radhika/radhika-studio-workspace.webp"
           overlay="strong"
           className={styles.philosophyBg}
         />
@@ -237,17 +236,10 @@ export default function AboutPage() {
                 {cta.primary.label}
                 <span aria-hidden="true">→</span>
               </Link>
-              <a
-                className={editorial.ctaSecondary}
-                href={authorityClosersCta.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-ac-event={authorityClosersCta.event}
-                data-ac-surface="about-cta"
-              >
+              <Link className={editorial.ctaSecondary} href="/resources">
                 {cta.secondary.label}
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

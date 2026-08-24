@@ -25,7 +25,7 @@ export default function ResourcesPage() {
         aside={
           <div className={styles.heroMediaFrame}>
             <Image
-              src="/media/projects/rma-project-a01.webp"
+              src="/media/rma/hero-living-main.webp"
               alt="Radhika Mahajan Architects Portfolio"
               width={1000}
               height={750}

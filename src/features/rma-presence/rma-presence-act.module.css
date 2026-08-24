@@ -1,597 +1,324 @@
+/* Radhika Mahajan Architects (RMA) — Act 3 Built Portfolio & Landmark Developments */
 .presenceSection {
-  --dv-ink: #11110f;
-  --dv-body: #3c3933;
-  --dv-canvas: #f4f0e9;
-  --dv-gold-art: #c89532;
-  --dv-gold-text: #9a7432;
-  --dv-gold-line: rgba(200, 149, 69, 0.44);
-  --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --rma-ink: #161412;
+  --rma-body: #4A463F;
+  --rma-canvas: #F7F4EE;
+  --rma-gold: #C5A880;
+  --rma-gold-deep: #9D7E56;
+  --rma-terracotta: #B35E38;
+  --rma-line: rgba(20, 20, 20, 0.12);
+  --dv-serif: var(--font-serif), "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
 
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   min-height: 100dvh;
-  max-height: 100dvh;
-  display: grid;
-  place-items: center;
-  background: var(--dv-canvas);
-  color: var(--dv-ink);
-  padding: 3.65dvh 2.03vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #F7F4EE;
+  color: var(--rma-ink);
   overflow: clip;
   box-sizing: border-box;
-  perspective: 1400px;
 }
 
-.atmosphereLayer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: var(--dv-canvas);
-}
-
-/* Canonical desktop target: reference frame is 1604 x 872 inside a 1672 x 941 image. */
-.ticketFrameRoot {
+.presenceContainer {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: var(--dv-canvas);
-  border: 1px solid var(--dv-gold-line);
-  box-shadow: 0 16px 48px rgba(17, 17, 15, 0.025);
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
+  max-width: 124rem;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(4.8rem, 8.5vh, 6.2rem) clamp(1.8rem, 4.5vw, 5rem) clamp(1.2rem, 2.4vh, 2.2rem);
 }
 
-/* -------------------------------------------------------------------------
-   AURORA FIELD
-   The old code used three small, heavily blurred blobs above the frame.
-   The reference is a broad color field: amber along the upper-left, rose
-   around the upper-center, and a coral plume descending the left edge.
-   ------------------------------------------------------------------------- */
-.auroraBackground {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  background:
-    radial-gradient(
-      ellipse 58% 52% at 13% 4%,
-      rgba(255, 153, 35, 0.88) 0%,
-      rgba(255, 167, 45, 0.72) 24%,
-      rgba(255, 188, 92, 0.38) 47%,
-      rgba(255, 205, 139, 0.13) 65%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 45% 38% at 57% 7%,
-      rgba(236, 93, 112, 0.72) 0%,
-      rgba(247, 127, 112, 0.52) 32%,
-      rgba(248, 164, 143, 0.22) 57%,
-      transparent 76%
-    ),
-    radial-gradient(
-      ellipse 46% 64% at 5% 43%,
-      rgba(246, 105, 108, 0.66) 0%,
-      rgba(250, 138, 123, 0.53) 34%,
-      rgba(252, 178, 151, 0.22) 61%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 30% 30% at 35% 27%,
-      rgba(255, 205, 135, 0.28) 0%,
-      rgba(255, 209, 154, 0.12) 48%,
-      transparent 76%
-    );
-}
-
-/* Keep these hooks because the current TSX and GSAP choreography expect them.
-   They are deliberately weak; the main field above carries the composition. */
-.auroraAmberBlob,
-.auroraCoralBlob,
-.auroraRoseBlob {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
-
-.auroraTextureOverlay {
-  position: absolute;
-  inset: 0;
-  background: url("/textures/act3-grain.webp") repeat;
-  background-size: 256px 256px;
-  mix-blend-mode: multiply;
-  opacity: 0.055;
-}
-
-/* -------------------------------------------------------------------------
-   DOUBLE ENGRAVED BORDER + CORNER CUTS
-   Reference: outer frame ~34px from viewport; second line ~9px inward;
-   corner cut radius ~40px and a solid four-point sparkle.
-   ------------------------------------------------------------------------- */
-.innerEngravedBorder {
-  position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(200, 149, 69, 0.28);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.scallopTL,
-.scallopTR,
-.scallopBL,
-.scallopBR {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--dv-gold-line);
-  background: var(--dv-canvas);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.scallopTL {
-  top: -1px;
-  left: -1px;
-  border-top: 0;
-  border-left: 0;
-  border-bottom-right-radius: 40px;
-}
-
-.scallopTR {
-  top: -1px;
-  right: -1px;
-  border-top: 0;
-  border-right: 0;
-  border-bottom-left-radius: 40px;
-}
-
-.scallopBL {
-  bottom: -1px;
-  left: -1px;
-  border-bottom: 0;
-  border-left: 0;
-  border-top-right-radius: 40px;
-}
-
-.scallopBR {
-  right: -1px;
-  bottom: -1px;
-  border-right: 0;
-  border-bottom: 0;
-  border-top-left-radius: 40px;
-}
-
-.cornerStarTL,
-.cornerStarTR,
-.cornerStarBL,
-.cornerStarBR {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  z-index: 6;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  color: var(--dv-gold-art);
-}
-
-.cornerStarTL { top: 15px; left: 14px; }
-.cornerStarTR { top: 15px; right: 14px; }
-.cornerStarBL { bottom: 15px; left: 14px; }
-.cornerStarBR { right: 14px; bottom: 15px; }
-
-.cornerStarTL svg,
-.cornerStarTR svg,
-.cornerStarBL svg,
-.cornerStarBR svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-/* -------------------------------------------------------------------------
-   HEADER — ABSOLUTE NORMALIZED ANCHORS
-   The target does NOT use space-between. Its major visual rows sit at fixed
-   fractions of the certificate: header ~18%, axis ~51%, signatures ~63.5%.
-   ------------------------------------------------------------------------- */
-.ticketHeaderRow {
-  position: absolute;
-  z-index: 2;
-  top: 17.85%;
-  left: 6.65%;
-  right: 5.28%;
-  display: grid;
-  grid-template-columns: minmax(0, 56%) minmax(340px, 44%);
-  align-items: start;
-  gap: 0;
-  padding: 0;
-}
-
-.titleBlock {
-  display: block;
-  min-width: 0;
-}
-
-.sectionIndex {
+/* Top Header Eyebrow with Flanking Hairline Rules */
+.eyebrowRow {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  margin: 0;
-  font-family: var(--dv-sans);
-  font-size: min(0.9vw, 1.7dvh, 15px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.27em;
-  color: var(--dv-gold-text);
-  text-transform: uppercase;
+  justify-content: center;
+  gap: 0.9rem;
+  width: 100%;
 }
 
-.headline {
-  margin: 31px 0 0;
-  color: var(--dv-ink);
-  font-family: var(--dv-serif);
-  font-size: min(6.65vw, 11.8dvh, 7rem);
-  font-weight: 800;
-  font-synthesis: none;
-  line-height: 0.87;
-  letter-spacing: -0.031em;
+.eyebrowHairline {
+  height: 1px;
+  flex: 1;
+  max-width: 18rem;
+  background-color: rgba(20, 20, 20, 0.14);
+}
+
+.eyebrowDiamond {
+  color: var(--rma-terracotta);
+  font-size: 0.62rem;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.72rem, 0.78vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8C7F72;
   white-space: nowrap;
 }
 
-.headlineMask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.headlineLine {
-  display: inline-block;
-  will-change: transform, opacity;
-}
-
-.goldPeriod {
-  display: inline-block;
-  margin-left: 0.02em;
-  color: var(--dv-gold-art);
-  font-family: var(--dv-serif);
-}
-
-.headerMeta {
-  justify-self: end;
-  width: min(100%, 440px);
-  padding-top: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.metaHeadingRow {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.metaLabel {
-  font-family: var(--dv-sans);
-  font-size: min(0.79vw, 1.5dvh, 13px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.22em;
-  color: var(--dv-gold-text);
-  text-transform: uppercase;
-}
-
-.metaDividerStar {
-  position: relative;
-  top: -1px;
-  color: var(--dv-gold-art);
-  font-size: 0.76rem;
-  line-height: 1;
-}
-
-.supportingNote {
-  width: 100%;
-  max-width: 435px;
-  margin: 29px 0 0;
-  color: var(--dv-body);
-  font-family: var(--dv-sans);
-  font-size: min(1.03vw, 2.0dvh, 17px);
-  font-weight: 400;
-  line-height: 2.12;
-  letter-spacing: -0.013em;
-}
-
-/* -------------------------------------------------------------------------
-   CENTER AXIS
-   Target ornament: ~29 x 32px four-point sparkle, with ~7px dots centered
-   ~33px either side. This replaces the current thin nested diamond.
-   ------------------------------------------------------------------------- */
-.centerDividerAxis {
-  position: absolute;
-  z-index: 2;
-  top: 51.05%;
-  left: 6.55%;
-  right: 6.55%;
-  height: 34px;
-  margin: 0;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-}
-
-.geometricSeparatorSvg {
-  display: block;
-  width: 100%;
-  height: 34px;
-  overflow: visible;
-}
-
-/* -------------------------------------------------------------------------
-   FIVE MEDIA SIGNATURES
-   Target top of badge row is ~63.5% of the certificate. The row spans almost
-   the entire width (only ~4% inset), unlike the more padded header.
-   ------------------------------------------------------------------------- */
-.platformsGrid {
-  position: absolute;
-  z-index: 2;
-  top: 63.55%;
-  left: 3.93%;
-  right: 3.93%;
-  height: 24.2%;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.platformColumn {
-  position: relative;
-  min-width: 0;
+/* Master Serif Headline: Landmark Developments ✦ */
+.headerBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0 1rem;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
 }
 
-.iconBadge {
-  flex: 0 0 auto;
-  width: min(4.68vw, 8.35dvh, 78px);
-  height: min(4.68vw, 8.35dvh, 78px);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--dv-ink);
-  background: rgba(250, 248, 242, 0.46);
-  border: 1px solid rgba(200, 149, 69, 0.42);
-  box-shadow: none;
-  transition:
-    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 220ms ease,
-    background-color 220ms ease;
-}
-
-.platformColumn:hover .iconBadge {
-  transform: translateY(-3px) scale(1.04);
-  background: rgba(255, 255, 255, 0.58);
-  border-color: rgba(200, 149, 69, 0.72);
-}
-
-.svgIcon {
-  width: min(2.05vw, 3.62dvh, 34px);
-  height: min(2.05vw, 3.62dvh, 34px);
-  fill: currentColor;
-}
-
-.platformTitle {
-  margin: 19px 0 0;
-  color: var(--dv-ink);
+.headline {
   font-family: var(--dv-serif);
-  font-size: min(1.73vw, 3.08dvh, 29px);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.018em;
-  transition: color 180ms ease, transform 220ms ease;
-}
-
-.platformColumn:hover .platformTitle {
-  color: var(--dv-gold-text);
-  transform: translateY(-1px);
-}
-
-.platformCaption {
-  max-width: 245px;
-  margin: 20px 0 0;
-  color: var(--dv-body);
-  font-family: var(--dv-sans);
-  font-size: min(0.98vw, 1.78dvh, 16.4px);
+  font-size: clamp(2.8rem, 4.6vw, 4.4rem);
   font-weight: 400;
-  line-height: 2.05;
-  letter-spacing: -0.015em;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #161412;
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.columnDivider {
-  position: absolute;
-  top: 6.5%;
-  right: 0;
-  width: 1px;
-  height: 89%;
-  background: rgba(200, 149, 69, 0.24);
-  pointer-events: none;
-}
-
-.dividerStarPip {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.headlineMask {
   display: block;
-  padding: 3px 0;
-  color: #ec9e72;
-  background: var(--dv-canvas);
-  font-size: 10px;
+  overflow: hidden;
+}
+
+.headlineLine {
+  display: block;
+  will-change: transform, opacity;
+}
+
+.headlineStar {
+  color: var(--rma-gold);
+  font-size: 0.65em;
+  vertical-align: super;
   line-height: 1;
 }
 
-.platformLink {
-  display: contents;
+.supportingNote {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.92rem, 1.05vw, 1.06rem);
+  line-height: 1.6;
+  color: #5A544C;
+  max-width: 44rem;
+  margin: 0;
+  text-align: center;
 }
 
-.platformColumn:has(.platformLink) {
-  cursor: pointer;
+/* 5-Column Built Portfolio Gallery */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.8rem, 1.3vw, 1.6rem);
+  width: 100%;
+  margin-top: clamp(1rem, 2vh, 1.8rem);
+  margin-bottom: clamp(1rem, 2vh, 1.8rem);
 }
 
-/* -------------------------------------------------------------------------
-   TABLET / MOBILE
-   Pixel lock applies to desktop. Below 960px the composition intentionally
-   returns to document flow, preserving the existing one-column mobile brief.
-   ------------------------------------------------------------------------- */
-@media (max-width: 960px) {
+.projectCard {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  transition: transform 260ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 260ms cubic-bezier(0.25, 1, 0.5, 1), border-color 260ms ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0px;
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.16 / 1;
+  overflow: hidden;
+  background-color: #EBE7DF;
+}
+
+.projectImg {
+  object-fit: cover;
+  transition: transform 450ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(0, 0, 0, 0.12) 100%);
+  pointer-events: none;
+}
+
+.projectCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(20, 18, 16, 0.08);
+  border-color: rgba(197, 168, 128, 0.7);
+}
+
+.projectCard:hover .projectImg {
+  transform: scale(1.05);
+}
+
+.cardInfo {
+  padding: clamp(0.9rem, 1.6vh, 1.25rem) clamp(0.8rem, 1.1vw, 1.1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #FFFFFF;
+  flex: 1;
+  border-top: 1px solid rgba(20, 20, 20, 0.06);
+}
+
+.numberBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.numberHairline {
+  height: 1px;
+  width: 16px;
+  background-color: rgba(197, 168, 128, 0.6);
+}
+
+.numberText {
+  font-family: var(--dv-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--rma-gold-deep);
+}
+
+.projectName {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #161412;
+  margin: 0 0 0.3rem;
+}
+
+.projectSublabel {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.72rem, 0.76vw, 0.8rem);
+  line-height: 1.45;
+  color: #756E65;
+  margin: 0;
+}
+
+/* Bottom Studio Signature & Logo */
+.studioFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.footerHairline {
+  height: 1px;
+  flex: 1;
+  background-color: rgba(20, 20, 20, 0.12);
+}
+
+.signatureLockup {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footerDiamond {
+  color: var(--rma-gold);
+  font-size: 0.62rem;
+  flex-shrink: 0;
+}
+
+.brandTextGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+}
+
+.brandMonogram {
+  font-family: var(--dv-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--rma-gold-deep);
+  line-height: 1;
+}
+
+.brandTagline {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.6rem, 0.66vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8C7F72;
+}
+
+/* Responsive Adaptations */
+@media (max-width: 1100px) {
+  .projectsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
   .presenceSection {
+    padding: 1.4rem 1rem 1.2rem;
     height: auto;
     min-height: 100dvh;
-    max-height: none;
-    padding: 1rem;
   }
 
-  .ticketFrameRoot {
-    height: auto;
-    min-height: calc(100dvh - 2rem);
-    padding: 3.5rem 2rem 3rem;
-    overflow: hidden;
-  }
-
-  .ticketHeaderRow,
-  .centerDividerAxis,
-  .platformsGrid {
-    position: relative;
-    inset: auto;
-    transform: none;
-  }
-
-  .ticketHeaderRow {
-    display: grid;
+  .projectsGrid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.2rem;
   }
 
   .headline {
-    margin-top: 1.2rem;
-    font-size: clamp(3rem, 10vw, 5rem);
-    white-space: normal;
+    font-size: clamp(2.2rem, 8vw, 3.4rem);
   }
 
-  .headerMeta {
-    justify-self: start;
-    width: 100%;
-    max-width: 34rem;
-    align-items: flex-start;
-    text-align: left;
-    padding-top: 0;
-  }
-
-  .supportingNote {
-    margin-top: 1rem;
-    max-width: 34rem;
-    font-size: 1rem;
-    line-height: 1.75;
-  }
-
-  .centerDividerAxis {
-    width: 100%;
-    height: 34px;
-    margin: 2.2rem 0 2rem;
-  }
-
-  .platformsGrid {
-    height: auto;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 2.6rem;
-  }
-
-  .iconBadge {
-    width: 68px;
-    height: 68px;
-  }
-
-  .svgIcon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .platformTitle {
-    font-size: 1.55rem;
-  }
-
-  .platformCaption {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .columnDivider {
-    display: none;
+  .eyebrowHairline {
+    max-width: 4rem;
   }
 }
 
-@media (max-width: 640px) {
-  .presenceSection {
-    padding: 0.7rem;
-  }
-
-  .ticketFrameRoot {
-    min-height: 0;
-    padding: 3rem 1.25rem 2.5rem;
-  }
-
-  .headline {
-    font-size: clamp(2.65rem, 13vw, 4rem);
-  }
-
-  .platformsGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .platformColumn {
-    padding-bottom: 1.6rem;
-    border-bottom: 1px solid rgba(200, 149, 69, 0.18);
-  }
-}
-
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .ticketFrameRoot,
   .headlineLine,
-  .geometricSeparatorSvg,
-  .platformColumn,
-  .cornerStarTL,
-  .cornerStarTR,
-  .cornerStarBL,
-  .cornerStarBR {
+  .projectCard,
+  .projectImg {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
-  }
-
-  .centerDividerAxis {
-    transform: translateY(-50%) !important;
-  }
-
-  @media (max-width: 960px) {
-    .centerDividerAxis {
-      transform: none !important;
-    }
   }
 }

@@ -71,8 +71,8 @@ export default function NowPage() {
         aside={
           <div className={styles.heroMediaFrame}>
             <Image
-              src="/media/10_screenshot_2026-08-08_at_10.40.56_pm.png"
-              alt="Collaboration and working session"
+              src="/media/radhika/radhika-design-table.webp"
+              alt="Ar. Radhika Mahajan architectural design session"
               width={800}
               height={1000}
               sizes="(max-width: 900px) 70vw, 24rem"

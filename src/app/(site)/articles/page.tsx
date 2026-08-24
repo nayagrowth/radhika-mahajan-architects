@@ -28,7 +28,7 @@ export default function ArticlesPage() {
         aside={
           <div className={styles.heroMediaFrame}>
             <Image
-              src="/media/projects/rma-project-a02.webp"
+              src="/media/rma/journal-spatial-planning.webp"
               alt="Radhika Mahajan Architects Design Journal"
               width={1000}
               height={750}

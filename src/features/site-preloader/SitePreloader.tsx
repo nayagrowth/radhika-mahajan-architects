@@ -64,7 +64,7 @@ export function SitePreloader({ onComplete }: SitePreloaderProps) {
   return (
     <aside
       className={`${styles.preloaderRoot} ${isExiting ? styles.preloaderExiting : ""}`}
-      aria-label="Loading Dipak Vishwakarma official experience"
+      aria-label="Loading Radhika Mahajan Architects official experience"
       aria-live="polite"
     >
       {/* Dual Curtain Shutters for Cinematic Opening */}
@@ -72,7 +72,7 @@ export function SitePreloader({ onComplete }: SitePreloaderProps) {
       <div className={`${styles.curtain} ${styles.curtainBottom}`} aria-hidden="true" />
 
       <div className={styles.preloaderContent}>
-        {/* Luminous Golden Ensō Emblem */}
+        {/* Luminous Architectural Monogram Emblem */}
         <div className={styles.ensoWrapper} aria-hidden="true">
           <svg viewBox="0 0 400 400" className={styles.ensoSvg}>
             <circle
@@ -91,13 +91,13 @@ export function SitePreloader({ onComplete }: SitePreloaderProps) {
               }}
             />
           </svg>
-          <div className={styles.monogram}>DV</div>
+          <div className={styles.monogram}>RM</div>
         </div>
 
         {/* Brand Lockup */}
         <div className={styles.titleLockup}>
-          <span className={styles.brandName}>DIPAK VISHWAKARMA</span>
-          <span className={styles.brandRole}>THE CERTAINTY BUILDER™</span>
+          <span className={styles.brandName}>RADHIKA MAHAJAN ARCHITECTS</span>
+          <span className={styles.brandRole}>FORM × SPACE × DETAIL</span>
         </div>
 
         {/* Precision Luxury Metric Counter */}

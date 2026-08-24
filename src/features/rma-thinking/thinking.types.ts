@@ -14,22 +14,33 @@ export interface FeaturedArticle {
   title: string;
   category: string;
   readTime: string;
-  /** Signature content property, e.g. "Trust Engineering™". */
   series?: string;
   abstract?: string;
-  /** Internal route to the published article. */
   url?: string;
+  coverImage?: string;
+  date?: string;
+  author?: string;
+}
+
+export interface ThinkingFilterCategory {
+  id: string;
+  label: string;
 }
 
 export interface ThinkingContent {
   sectionNumber: string;
   sectionTitle: string;
+  eyebrow?: string;
+  headlineWord1?: string;
+  headlineWord2?: string;
+  headlineAccent?: string;
   metaLabel: string;
   supportingNote: string;
   videoSectionHeading: string;
   articleSectionHeading: string;
   featuredVideo: FeaturedVideo;
   articles: FeaturedArticle[];
+  filterCategories?: ThinkingFilterCategory[];
   videosCtaText: string;
   articlesCtaText: string;
 }

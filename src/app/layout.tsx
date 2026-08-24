@@ -48,13 +48,24 @@ export const metadata: Metadata = {
       "Form × Space × Detail. 35+ delivered residences, luxury villas, and turnkey interiors across Pune & Lonavala.",
     images: ["/og-rma-preview.png"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
-  themeColor: "#f4f8fb",
+  themeColor: "#F7F4EE",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

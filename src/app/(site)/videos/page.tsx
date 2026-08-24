@@ -29,7 +29,7 @@ export default function VideosPage() {
         aside={
           <div className={styles.heroMediaPlate}>
             <Image
-              src="/media/projects/rma-project-a03.webp"
+              src="/media/rma/hero-lonavala-villa.webp"
               alt="Radhika Mahajan Architects Spatial Tour"
               width={1200}
               height={800}

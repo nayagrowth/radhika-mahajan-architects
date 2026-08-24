@@ -1,17 +1,85 @@
 import React from "react";
+import Image from "next/image";
 import { identityContent } from "./identity.content";
 import type { IdentityContent } from "./identity.types";
 import styles from "./rma-identity-act.module.css";
 
-interface DipakIdentityActProps {
+interface RmaIdentityActProps {
   content?: IdentityContent;
   className?: string;
+}
+
+function MetricIcon({ icon }: { icon: "sofa" | "blueprint" | "calendar" }) {
+  if (icon === "sofa") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={styles.ribbonIconSvg}
+        aria-hidden="true"
+      >
+        <path d="M4 11V16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11" />
+        <path d="M6 11V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" />
+        <path d="M2 13a2 2 0 0 1 2-2h1v5H3a1 1 0 0 1-1-1v-2z" />
+        <path d="M19 11h1a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1h-2v-5z" />
+        <path d="M6 17v2" />
+        <path d="M18 17v2" />
+      </svg>
+    );
+  }
+  if (icon === "blueprint") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={styles.ribbonIconSvg}
+        aria-hidden="true"
+      >
+        <path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
+        <path d="M8 4v16" />
+        <path d="M8 9h8" />
+        <path d="M8 14h8" />
+        <circle cx="14" cy="9" r="1" fill="currentColor" />
+        <circle cx="14" cy="14" r="1" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={styles.ribbonIconSvg}
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <path d="M8 14h.01" />
+      <path d="M12 14h.01" />
+      <path d="M16 14h.01" />
+      <path d="M8 18h.01" />
+      <path d="M12 18h.01" />
+    </svg>
+  );
 }
 
 export function RmaIdentityAct({
   content = identityContent,
   className,
-}: DipakIdentityActProps) {
+}: RmaIdentityActProps) {
   return (
     <section
       id="identity"
@@ -19,125 +87,148 @@ export function RmaIdentityAct({
       aria-labelledby="identity-heading"
       data-story-act2="true"
     >
-      {/* 3D Diagonal Sunlight & Shadow Strips Layer */}
-      <div className={styles.shadowGoboContainer} aria-hidden="true" data-story-act2-gobo="true">
-        <div className={styles.sunlightBeam} data-story-act2-sunlight="true" />
-        <div className={styles.shadowStripLeft} data-story-act2-shadow-left="true" />
-        <div className={styles.shadowStripMid} data-story-act2-shadow-mid="true" />
-        <div className={styles.ambientLightWash} data-story-act2-ambient="true" />
-        {/* Subtle Architectural Seal Watermark Background */}
-        <div className={styles.watermarkEmblem} data-story-act2-emblem="true" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="95" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-            <circle cx="100" cy="100" r="82" stroke="currentColor" strokeWidth="0.75" />
-            <circle cx="100" cy="100" r="48" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="100" y1="0" x2="100" y2="200" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
-            <line x1="0" y1="100" x2="200" y2="100" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
-            <polygon points="100,20 180,100 100,180 20,100" stroke="currentColor" strokeWidth="0.75" />
-          </svg>
-        </div>
+      {/* Full-Bleed Master Interior Scene Background */}
+      <div className={styles.sceneBackground} data-story-act2-scene="true">
+        <Image
+          src="/practice/act2-practice-scene-full.webp"
+          alt="Architectural Living Room Interior — Radhika Mahajan Architects"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.sceneImg}
+        />
+        <div className={styles.ambientLightGlow} aria-hidden="true" />
       </div>
 
+      {/* Subtle Botanical / Architectural Watermark */}
+      <div className={styles.botanicalWatermark} aria-hidden="true" />
+
+      {/* Viewport Content Stage */}
       <div className={styles.identityContainer}>
-        {/* Top Header Row: Section Number + Hairline/Dot + Headline */}
-        <header className={styles.topRow}>
-          <div className={styles.sectionIndexWrapper} data-story-act2-index="true">
-            <div className={styles.sectionIndex}>
-              <span className={styles.livePulseDot} aria-hidden="true" />
-              <span>{content.sectionNumber}</span>
-              <span aria-hidden="true">/</span>
-              <span>{content.sectionTitle}</span>
-            </div>
-            <div className={styles.headerHairlineTrack}>
-              <span className={styles.headerHairline} />
-              <span className={styles.headerDot} />
-            </div>
-          </div>
-
-          <h2 id="identity-heading" className={styles.headline} data-story-act2-3dheadline="true">
-            <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-act2-headline="true"
-              >
-                <span className={styles.highlightSmudge} data-story-act2-highlight="true">
-                  {content.headlinePart1}
-                </span>
-              </span>
-            </span>
-            <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-act2-headline="true"
-              >
-                <span className={styles.highlightSmudge} data-story-act2-highlight="true">
-                  {content.headlineWord2}
-                  <span className={styles.tm}>™</span>
-                </span>
-                <span className={styles.goldPeriod}>.</span>
-              </span>
-            </span>
-          </h2>
-        </header>
-
-        {/* Top Full-Width Golden Divider Rule */}
-        <div className={styles.dividerRuleContainer}>
-          <div
-            className={styles.dividerRule}
-            data-story-act2-rule="true"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Middle Content Row: Founder Lockup & Verified Bio with Executive Proof */}
-        <div className={styles.middleRow}>
-          <div className={styles.roleColumn} data-story-act2-role="true">
-            <h3 className={styles.roleSubhead}>
-              <span>Founder of</span>
-              <span className={styles.roleBrand}>Authority Closers.</span>
-            </h3>
-            <span className={styles.founderDash} aria-hidden="true" />
-
-            <div className={styles.executiveProofSnippet}>
-              <span className={styles.proofBadge}>KEYNOTE & ADVISORY</span>
-              <p className={styles.proofCaption}>Direct Architect of ₹100Cr+ High-Ticket Sales Pipelines</p>
-            </div>
-          </div>
-
-          <div className={styles.bioColumn} data-story-act2-bio="true">
-            <p className={styles.bioText}>{content.bioParagraph}</p>
-          </div>
-        </div>
-
-        {/* Bottom Full-Width Golden Divider Rule */}
-        <div className={styles.dividerRuleContainer}>
-          <div
-            className={styles.dividerRule}
-            data-story-act2-rule2="true"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Bottom 3-Column Metric Ledger with Vertical Hairlines */}
-        <div className={styles.statsRow} data-story-act2-stats="true">
-          {content.metrics.map((metric, idx) => (
-            <div className={styles.statBlock} key={metric.label}>
-              <div className={styles.statValueRow}>
-                <span className={styles.statMain}>{metric.main}</span>
-                {metric.suffix ? (
-                  <span className={styles.statSuffix}>{metric.suffix}</span>
-                ) : null}
+        {/* Main Upper Split: Left Statement & CTA / Right Living Room Atmosphere */}
+        <div className={styles.heroSplit}>
+          {/* Left Column: 02 Label + Chromatic 3-Line Headline + Copy + CTA */}
+          <div className={styles.editorialColumn} data-story-act2-copy-column="true">
+            {/* 02 / THE PRACTICE Index Header */}
+            <div className={styles.sectionIndexWrapper} data-story-act2-index="true">
+              <div className={styles.sectionIndex}>
+                <span>{content.sectionNumber}</span>
+                <span aria-hidden="true">/</span>
+                <span>{content.sectionTitle}</span>
               </div>
-              <div className={styles.statLabelRow}>
-                <span className={styles.statLabel}>{metric.label}</span>
+              <div className={styles.headerHairlineTrack}>
+                <span className={styles.headerHairline} />
+                <span className={styles.headerDot} />
               </div>
-              {idx < content.metrics.length - 1 && (
-                <span className={styles.verticalDivider} aria-hidden="true" />
+            </div>
+
+            {/* Chromatic Headline: Colour, Comfort, Character. */}
+            <h2 id="identity-heading" className={styles.headline}>
+              {content.headlineLines?.map((line, idx) => (
+                <span key={line.text} className={styles.headlineMask}>
+                  <span
+                    className={`${styles.headlineLine} ${
+                      idx === 0
+                        ? styles.headlineColour
+                        : idx === 1
+                        ? styles.headlineComfort
+                        : styles.headlineCharacter
+                    }`}
+                    data-story-act2-headline="true"
+                  >
+                    {line.text}
+                  </span>
+                </span>
+              )) || (
+                <>
+                  <span className={styles.headlineMask}>
+                    <span
+                      className={`${styles.headlineLine} ${styles.headlineColour}`}
+                      data-story-act2-headline="true"
+                    >
+                      Colour,
+                    </span>
+                  </span>
+                  <span className={styles.headlineMask}>
+                    <span
+                      className={`${styles.headlineLine} ${styles.headlineComfort}`}
+                      data-story-act2-headline="true"
+                    >
+                      Comfort,
+                    </span>
+                  </span>
+                  <span className={styles.headlineMask}>
+                    <span
+                      className={`${styles.headlineLine} ${styles.headlineCharacter}`}
+                      data-story-act2-headline="true"
+                    >
+                      Character.
+                    </span>
+                  </span>
+                </>
               )}
+            </h2>
+
+            {/* Supporting Copy */}
+            <p className={styles.supportingCopy} data-story-act2-copy="true">
+              {content.supportingCopy || content.bioParagraph}
+            </p>
+
+            {/* CTA Button */}
+            <div className={styles.ctaRow} data-story-act2-cta="true">
+              <a href={content.cta?.href || "/resources"} className={styles.practiceCtaBtn}>
+                <span>{content.cta?.label || "EXPLORE OUR WORK"}</span>
+                <span aria-hidden="true" className={styles.ctaArrow}>→</span>
+              </a>
             </div>
-          ))}
+          </div>
+
+          {/* Right Empty Spacer (Revealing the curved sofa, painting & niche) */}
+          <div className={styles.interiorSpaceAnchor} aria-hidden="true" />
+        </div>
+
+        {/* Bottom Multi-Tone Architectural Metric Ribbon + Sub-Ribbon Footer */}
+        <div className={styles.ribbonWrapper} data-story-act2-stats="true">
+          {/* 3-Color Metric Panels */}
+          <div className={styles.ribbonPanels}>
+            {content.metricsRibbon.map((item) => (
+              <div
+                key={item.label}
+                className={styles.ribbonPanel}
+                style={{ backgroundColor: item.color }}
+              >
+                <div className={styles.ribbonIconCircle}>
+                  <MetricIcon icon={item.icon} />
+                </div>
+                <div className={styles.ribbonTextLockup}>
+                  <div className={styles.ribbonValueRow}>
+                    <span className={styles.ribbonValue}>{item.value}</span>
+                    {item.suffix ? (
+                      <span className={styles.ribbonSuffix}>{item.suffix}</span>
+                    ) : null}
+                  </div>
+                  <span className={styles.ribbonLabel}>{item.label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Sub-Ribbon Baseline Footer */}
+          <div className={styles.subRibbonBar}>
+            <div className={styles.subRibbonHairline} />
+            <span className={styles.subRibbonDiamond} aria-hidden="true" />
+            <span className={styles.subRibbonText}>
+              {content.subRibbonText || "IN-HOUSE DESIGN & EXECUTION  •  PUNE & LONAVALA"}
+            </span>
+            <span className={styles.subRibbonDiamond} aria-hidden="true" />
+            <div className={styles.subRibbonHairline} />
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+export { RmaIdentityAct as DipakIdentityAct };
+
+

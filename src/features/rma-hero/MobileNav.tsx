@@ -93,10 +93,10 @@ export function MobileNav({
             tabIndex={isOpen ? 0 : -1}
           >
             <Image
-              src="/branding/dipak-signature-full-black.webp"
-              alt="Dipak Vishwakarma"
-              width={160}
-              height={68}
+              src="/branding/rma-logo-horizontal-blk.webp"
+              alt="Radhika Mahajan Architects"
+              width={180}
+              height={58}
               className={styles.headerSignatureImg}
             />
           </a>
@@ -147,7 +147,7 @@ export function MobileNav({
               tabIndex={isOpen ? 0 : -1}
               data-ac-event={secondaryCta.event}
               data-ac-event-schema="1"
-              data-ac-surface="dipak-public-hero-mobile-drawer"
+              data-ac-surface="rma-public-hero-mobile-drawer"
             >
               <span>{secondaryCta.label}</span>
               <span aria-hidden="true" className={styles.drawerCtaArrow}>

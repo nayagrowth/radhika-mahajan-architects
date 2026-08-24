@@ -1,57 +1,100 @@
 import type { PresenceContent } from "./presence.types";
 
-/**
- * "Featured / Found On" proof rail.
- * Copy from the handoff pack, 01_COPY section 03.
- *
- * `href` is omitted on every entry deliberately. The previous values were
- * bare root domains (medium.com, youtube.com, linkedin.com) — not Dipak's
- * profiles — and the copy master flags media handles as unverified. Add each
- * real profile URL here and that platform becomes a working link on its own.
- */
 export const presenceContent: PresenceContent = {
   sectionNumber: "03",
-  sectionTitle: "LANDMARKS & PROOF",
+  sectionTitle: "BUILT PORTFOLIO",
+  eyebrow: "BUILT PORTFOLIO.",
+  headline: "Landmark Developments",
+  supportingNote:
+    "Transforming high-end 3 & 4 BHK residences, bespoke villas, and boutique workspaces across Pune's finest developments and Lonavala retreats.",
+  projects: [
+    {
+      id: "kolte-patil",
+      number: "01",
+      name: "Kolte Patil Projects",
+      sublabel: "Luxury 3 & 4 BHK Full Home Interiors",
+      image: "/landmarks/project-01-kolte-patil.webp",
+      category: "RESIDENTIAL",
+      href: "/resources",
+    },
+    {
+      id: "godrej-infinity",
+      number: "02",
+      name: "Godrej Infinity",
+      sublabel: "Contemporary Turnkey Living Spaces",
+      image: "/landmarks/project-02-godrej-infinity.webp",
+      category: "PREMIUM",
+      href: "/resources",
+    },
+    {
+      id: "koregaon-park",
+      number: "03",
+      name: "Koregaon Park",
+      sublabel: "Bespoke Joinery & Architectural Styling",
+      image: "/landmarks/project-03-koregaon-park.webp",
+      category: "LUXURY",
+      href: "/resources",
+    },
+    {
+      id: "lonavala-villas",
+      number: "04",
+      name: "Lonavala Villas",
+      sublabel: "Weekend Retreats & Landscape Integration",
+      image: "/landmarks/project-04-lonavala-villas.webp",
+      category: "RETREATS",
+      href: "/resources",
+    },
+    {
+      id: "bibewadi-estates",
+      number: "05",
+      name: "Bibewadi Estates",
+      sublabel: "Complete Spatial & Structural Renovations",
+      image: "/landmarks/project-05-bibewadi-estates.webp",
+      category: "TURNKEY",
+      href: "/resources",
+    },
+  ],
+  studioName: "RMA",
+  studioTagline: "RADHIKA MAHAJAN ARCHITECTS",
+  // Backwards compatibility
   headlineWord1: "BUILT",
   headlineWord2: "PORTFOLIO",
   metaLabel: "Landmark Developments",
-  supportingNote:
-    "Transforming high-end 3 & 4 BHK residences, bespoke villas, and boutique workspaces across Pune's finest developments and Lonavala retreats.",
   signatures: [
     {
       id: "kolte-patil",
       name: "Kolte Patil Projects",
       sublabel: "Luxury 3 & 4 BHK Full Home Interiors",
       category: "RESIDENTIAL",
-      iconType: "medium",
+      iconType: "residence",
     },
     {
       id: "godrej-infinity",
       name: "Godrej Infinity",
       sublabel: "Contemporary Turnkey Living Spaces",
       category: "PREMIUM",
-      iconType: "dailyhunt",
+      iconType: "penthouse",
     },
     {
       id: "koregaon-park",
       name: "Koregaon Park",
       sublabel: "Bespoke Joinery & Architectural Styling",
       category: "LUXURY",
-      iconType: "youtube",
+      iconType: "villa",
     },
     {
       id: "lonavala-villas",
       name: "Lonavala Villas",
       sublabel: "Weekend Retreats & Landscape Integration",
       category: "RETREATS",
-      iconType: "podcast",
+      iconType: "retreat",
     },
     {
       id: "bibewadi-estates",
       name: "Bibewadi Estates",
       sublabel: "Complete Spatial & Structural Renovations",
       category: "TURNKEY",
-      iconType: "linkedin",
+      iconType: "turnkey",
     },
   ],
 };

@@ -4,7 +4,7 @@ export { EditorialPreloader } from "./EditorialPreloader";
 export {
   siteBrand,
   primaryNav,
-  authorityClosersCta,
+  rmaConsultationCta,
   footerContent,
   socialLinks,
 } from "./site.content";

@@ -1,8 +1,9 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
 import { MobileNav } from "./MobileNav";
-import { BrushArtwork } from "./BrushArtwork";
 import type { HeroContent, HeroCta } from "./hero.types";
-import heroComposition from "./generated/hero-composition.json";
 import styles from "./rma-hero.module.css";
 
 const EVENT_SCHEMA_VERSION = "1";
@@ -16,18 +17,12 @@ function CtaButton({ cta }: { cta: HeroCta }) {
       href={cta.href}
       data-ac-event={cta.event}
       data-ac-event-schema={EVENT_SCHEMA_VERSION}
-      data-ac-surface="dipak-public-hero"
+      data-ac-surface="rma-public-hero"
     >
-      {cta.kind === "primary" ? (
-        <span aria-hidden="true" className={styles.primaryIcon}>
-          →
-        </span>
-      ) : (
-        <span aria-hidden="true" className={styles.secondaryIconCircle}>
-          <span className={styles.playTriangle}>▶</span>
-        </span>
-      )}
       <span className={styles.ctaText}>{cta.label}</span>
+      <span aria-hidden="true" className={styles.ctaArrow}>
+        →
+      </span>
     </a>
   );
 }
@@ -40,99 +35,101 @@ export function RmaHero({ content }: { content: HeroContent }) {
       aria-labelledby="hero-heading"
       data-story-act1="true"
     >
-      {/* Authentic Left Margin Calligraphy Brush Accent */}
-      <div
-        className={styles.leftBrushAccent}
-        data-story-left-accent="true"
-        aria-hidden="true"
-      />
+      {/* Full-Bleed Master Architectural Scene Background */}
+      <div className={styles.sceneBackground} data-story-scene="true">
+        <Image
+          src="/hero/hero-scene-full.webp"
+          alt="Architectural Interior Studio Scene — Radhika Mahajan Architects"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.sceneImg}
+        />
+        <div className={styles.sceneAtmosphereGlow} aria-hidden="true" />
+      </div>
 
-      {/* Top Header & Navigation */}
+      {/* Master Architectural Header */}
       <header className={styles.header} data-story-header="true">
-        <a className={styles.brandLink} href="#hero" aria-label="Radhika Mahajan Architects homepage">
-          <Image
-            src="/branding/rma-logo-horizontal-blk.webp"
-            alt="Radhika Mahajan Architects"
-            width={210}
-            height={67}
-            className={styles.headerSignatureImg}
-            priority
-          />
-        </a>
+        <div className={styles.headerInner}>
+          <a
+            className={styles.brandLink}
+            href="#hero"
+            aria-label="Radhika Mahajan Architects — Home"
+          >
+            <Image
+              src="/branding/rma-logo-horizontal-blk.webp"
+              alt="Radhika Mahajan Architects"
+              width={230}
+              height={72}
+              className={styles.headerSignatureImg}
+              priority
+            />
+          </a>
 
-        <nav className={styles.desktopNav} aria-label="Primary navigation">
-          {content.navLinks.map((link) => (
+          <nav className={styles.desktopNav} aria-label="Architectural Navigation">
+            {content.navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`${styles.navLink} ${
+                  link.active ? styles.navLinkActive : ""
+                }`}
+              >
+                <span>{link.label}</span>
+                {link.active ? (
+                  <span className={styles.activeIndicator} aria-hidden="true">
+                    ◆
+                  </span>
+                ) : null}
+              </a>
+            ))}
+          </nav>
+
+          <div className={styles.headerActions}>
             <a
-              key={link.label}
-              href={link.href}
-              className={`${styles.navLink} ${link.active ? styles.navLinkActive : ""}`}
+              href="/contact"
+              className={styles.headerCtaBtn}
+              data-ac-event="public.rma_hero.header_consultation_clicked"
             >
-              <span>{link.label}</span>
-              {link.active ? <span className={styles.activeIndicator} aria-hidden="true" /> : null}
+              <span>Book Consultation</span>
+              <span className={styles.headerCtaArrow} aria-hidden="true">↗</span>
             </a>
-          ))}
-        </nav>
 
-        <div className={styles.headerActions}>
-          <MobileNav
-            navLinks={content.navLinks}
-            ctas={content.ctas}
-            brandFirstLine={content.brandFirstLine}
-            brandSecondLine={content.brandSecondLine}
-          />
+            <MobileNav
+              navLinks={content.navLinks}
+              ctas={content.ctas}
+              brandFirstLine={content.brandFirstLine}
+              brandSecondLine={content.brandSecondLine}
+            />
+          </div>
         </div>
       </header>
 
-      {/* Viewport Grid */}
+      {/* 58 / 42 Art-Directed Viewport Stage */}
       <div className={styles.heroGrid}>
-        {/* Left Column: Copy & CTAs */}
-        <div className={styles.copyColumn}>
+        {/* Left Column (58%): Small positioning line, Headline, Controlled 2-line copy, CTAs */}
+        <div className={styles.copyColumn} data-story-copy-column="true">
+          {/* Eyebrow / Kicker */}
           <div className={styles.kickerRow} data-story-kicker="true">
             <span className={styles.kickerText}>{content.kicker}</span>
-            <span
-              className={styles.kickerLine}
-              data-story-gold-rule="true"
-              aria-hidden="true"
-            />
           </div>
 
+          {/* Headline */}
           <h1 id="hero-heading" className={styles.headline}>
-            <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-headline-line="true"
-                style={{ "--line-index": 0 } as React.CSSProperties}
-              >
-                {content.headlinePart1}
-              </span>
+            <span className={styles.headlineLine} data-story-headline-line="true">
+              {content.headlinePart1}
             </span>
-            <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-headline-line="true"
-                style={{ "--line-index": 1 } as React.CSSProperties}
-              >
-                {content.headlinePart2}
-              </span>
-            </span>
-            <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-headline-line="true"
-                style={{ "--line-index": 2 } as React.CSSProperties}
-              >
-                {content.headlinePart3}
-                <span className={styles.goldDot} aria-hidden="true">
-                  .
-                </span>
-              </span>
+            <span className={styles.headlineLine} data-story-headline-line="true">
+              {content.headlinePart2}
             </span>
           </h1>
 
+          {/* Supporting Copy (Controlled 2 Lines, ~540px width) */}
           <p className={styles.supportingCopy} data-story-copy="true">
             {content.supportingCopy}
           </p>
 
+          {/* CTAs */}
           {content.ctas.some((cta) => Boolean(cta.href)) ? (
             <div
               className={styles.ctaRow}
@@ -144,70 +141,28 @@ export function RmaHero({ content }: { content: HeroContent }) {
               ))}
             </div>
           ) : null}
-
-          {content.quote ? (
-            <blockquote
-              className={styles.quoteBlock}
-              data-hero-quote="true"
-              data-story-quote="true"
-            >
-              <span className={styles.quoteMark} aria-hidden="true">
-                “
-              </span>
-              <span className={styles.quoteDivider} aria-hidden="true" />
-              <span className={styles.quoteText}>{content.quote}</span>
-            </blockquote>
-          ) : null}
         </div>
 
-        {/* Right Column: Mathematically Registered Single Composition Root */}
-        <div className={styles.portraitColumn}>
-          <div
-            className={styles.visualComposition}
-            data-hero-composition="true"
-            data-story-portrait-root="true"
-            style={
-              {
-                "--desktop-aspect": heroComposition.desktop.aspectRatio,
-                "--desktop-halo-u": heroComposition.desktop.halo_u,
-                "--desktop-halo-v": heroComposition.desktop.halo_v,
-                "--desktop-halo-sw": heroComposition.desktop.halo_sw,
-                "--desktop-halo-sh": heroComposition.desktop.halo_sh,
-                "--mobile-aspect": heroComposition.mobile.aspectRatio,
-                "--mobile-halo-u": heroComposition.mobile.halo_u,
-                "--mobile-halo-v": heroComposition.mobile.halo_v,
-                "--mobile-halo-sw": heroComposition.mobile.halo_sw,
-                "--mobile-halo-sh": heroComposition.mobile.halo_sh,
-              } as React.CSSProperties
-            }
-          >
-            {/* Authentic Natural-Media Ensō Brush Artwork with Animated Reveal */}
-            <BrushArtwork className={styles.halo} />
-
-            {/* Decontaminated High-Resolution Portrait Cutouts */}
-            <Image
-              className={`${styles.portrait} ${styles.desktopPortrait}`}
-              data-hero-portrait="true"
-              src={content.portrait}
-              alt={content.portraitAlt}
-              sizes="(max-width: 768px) 1px, (max-width: 1200px) 50vw, 44vw"
-              quality={92}
-              priority
-            />
-            <Image
-              className={`${styles.portrait} ${styles.mobilePortrait}`}
-              data-hero-portrait-mobile="true"
-              src="/hero/dipak-seated-mobile.png"
-              alt={content.portraitAlt}
-              width={1122}
-              height={1041}
-              sizes="(max-width: 768px) 96vw, 1px"
-              quality={92}
-              priority
-            />
+        {/* Right Column (42%): Art-Directed Portrait Inhabiting Architectural Scene */}
+        <div className={styles.portraitColumn} data-story-portrait-root="true">
+          <div className={styles.figureStage}>
+            <div className={styles.figureImageWrapper}>
+              <Image
+                src="/hero/radhika-hero-cutout.webp"
+                alt="Ar. Radhika Mahajan — Founder & Principal Architect"
+                width={760}
+                height={1140}
+                className={styles.standingFigureImg}
+                priority
+                quality={95}
+              />
+              <div className={styles.portraitGroundGlow} aria-hidden="true" />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+

@@ -1,8 +1,6 @@
-import type { StaticImageData } from "next/image";
-
 export type HeroEventName =
-  | "public.dipak_hero.primary_cta_clicked"
-  | "public.dipak_hero.secondary_cta_clicked"
+  | "public.rma_hero.primary_cta_clicked"
+  | "public.rma_hero.secondary_cta_clicked"
   | string;
 
 export type HeroCta = {
@@ -16,6 +14,25 @@ export type NavLink = {
   label: string;
   href: string;
   active?: boolean;
+  badge?: string;
+};
+
+export type SpatialPerspective = {
+  id: string;
+  label: string;
+  title: string;
+  location: string;
+  specs: string;
+  image: string;
+  alt: string;
+  isCutout?: boolean;
+};
+
+export type DesignProcessStep = {
+  number: string;
+  title: string;
+  description: string;
+  icon: "discover" | "design" | "execute" | string;
 };
 
 export type HeroContent = {
@@ -25,10 +42,12 @@ export type HeroContent = {
   kicker: string;
   headlinePart1: string;
   headlinePart2: string;
-  headlinePart3: string;
+  headlinePart3?: string;
   supportingCopy: string;
   quote?: string;
-  portrait: StaticImageData;
-  portraitAlt: string;
+  perspectives?: SpatialPerspective[];
+  designProcess: DesignProcessStep[];
   ctas: HeroCta[];
+  metrics?: Array<{ value: string; label: string }>;
 };
+

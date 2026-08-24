@@ -4,8 +4,22 @@ export const missionContent: MissionContent = {
   sectionNumber: "04",
   sectionTitle: "THE MANIFESTO",
   kicker: "STUDIO FOUNDATION",
-  headlineLine1: "FORM × SPACE",
-  headlineLine2: "× DETAIL",
+  headlineLine1: "Designing Spaces.",
+  headlineLine2: "Creating Experiences.",
+  cards: [
+    {
+      index: "01",
+      statement: "Let architecture and interiors remain the hero.",
+    },
+    {
+      index: "02",
+      statement: "Explain the decision behind the design.",
+    },
+    {
+      index: "03",
+      statement: "Use material, proportion and craft as substance.",
+    },
+  ],
   monumentalQuote: {
     prefix: "Designing Spaces.",
     emphasis: "Creating Experiences",

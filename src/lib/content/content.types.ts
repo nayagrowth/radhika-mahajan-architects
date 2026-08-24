@@ -41,7 +41,7 @@ export interface ArticleItem extends BaseContentItem {
 
 /**
  * Canonical Content Adapter Interface
- * Any CMS (Local Filesystem, Strapi, Sanity, Authority Closers API) must
+ * Any CMS (Local Filesystem, Strapi, Sanity, Headless API) must
  * implement this contract.
  */
 export interface ContentProvider {

@@ -2,11 +2,12 @@ import type { ContentProvider } from "./content.types";
 import { FileSystemContentProvider } from "./fs-content-provider";
 
 /**
- * Singleton Content Repository Access Point
+ * Content Module Entry Point
  *
- * To plug in Strapi / Sanity / Ghost / Authority Closers Monorepo API in the future:
- * Simply replace `new FileSystemContentProvider()` with `new HeadlessCmsProvider(config)`
- * or select via environment variable (`process.env.CMS_PROVIDER`).
+ * To plug in Strapi / Sanity / Ghost / Headless API in the future:
+ *   1. Implement ContentProvider (from ./content.types)
+ *   2. Swap the export here to use that provider
+ * 
  * No UI components or page routes will need to change!
  */
 export const contentProvider: ContentProvider = new FileSystemContentProvider();

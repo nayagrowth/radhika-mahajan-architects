@@ -1,39 +1,63 @@
-import portraitArmchair from "./assets/dipak-seated-armchair.png";
 import type { HeroContent } from "./hero.types";
 
-export const dipakHeroContent: HeroContent = {
+export const rmaHeroContent: HeroContent = {
   brandFirstLine: "RADHIKA",
   brandSecondLine: "MAHAJAN ARCHITECTS",
   navLinks: [
-    { label: "Home", href: "/", active: true },
     { label: "About", href: "/about" },
     { label: "Projects", href: "/resources" },
+    { label: "Practice", href: "/#topics" },
     { label: "Journal", href: "/articles" },
     { label: "Walkthroughs", href: "/videos" },
     { label: "Contact", href: "/contact" },
   ],
-  kicker: "Architecture + Interior Design | Pune & Lonavala",
-  headlinePart1: "Designing Spaces.",
-  headlinePart2: "Creating",
-  headlinePart3: "Experiences",
+  kicker: "ARCHITECTURE + INTERIOR DESIGN  |  PUNE & LONAVALA",
+  headlinePart1: "Built On Trust.",
+  headlinePart2: "Defined By Design.",
   supportingCopy:
-    "Thoughtful spaces. Balanced decisions. A clear, refined and individual point of view across residential, luxury villa, and commercial architecture.",
-  quote: "FORM × SPACE × DETAIL",
-  portrait: portraitArmchair,
-  portraitAlt: "Radhika Mahajan Architects — Architecture & Interior Design Studio",
+    "We craft timeless spaces through thoughtful planning, balanced materials, and an obsession with detail.",
+  quote: "FORM / SPACE / DETAIL",
+  designProcess: [
+    {
+      number: "01",
+      title: "DISCOVER",
+      description: "We listen, understand and define what matters most.",
+      icon: "discover",
+    },
+    {
+      number: "02",
+      title: "DESIGN",
+      description: "We create thoughtful concepts tailored to your lifestyle.",
+      icon: "design",
+    },
+    {
+      number: "03",
+      title: "EXECUTE",
+      description: "We manage every detail to deliver with clarity and care.",
+      icon: "execute",
+    },
+  ],
   ctas: [
     {
-      label: "Book Consultation",
-      href: "/contact",
+      label: "EXPLORE SELECTED PROJECTS",
+      href: "/resources",
       event: "public.rma_hero.primary_cta_clicked",
       kind: "primary",
     },
     {
-      label: "Explore Projects",
-      href: "/resources",
+      label: "START A CONVERSATION",
+      href: "/contact",
       event: "public.rma_hero.secondary_cta_clicked",
       kind: "secondary",
     },
   ],
+  metrics: [
+    { value: "35+", label: "Completed Projects in Pune & Lonavala" },
+    { value: "45–60", label: "Days Turnkey Execution Commitment" },
+    { value: "100%", label: "Line-Item BOQ Transparency" },
+  ],
 };
+
+export const dipakHeroContent = rmaHeroContent;
+
 

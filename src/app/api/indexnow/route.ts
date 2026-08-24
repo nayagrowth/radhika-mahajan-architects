@@ -19,5 +19,6 @@ export async function POST() {
     submitted: true,
     count: urlList.length,
     host,
+    key,
   });
 }

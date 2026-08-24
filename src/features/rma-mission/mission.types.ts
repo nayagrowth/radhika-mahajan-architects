@@ -1,3 +1,8 @@
+export interface ManifestoCard {
+  index: string;
+  statement: string;
+}
+
 export interface PhilosophyPillar {
   index: string;
   tag: string;
@@ -11,11 +16,13 @@ export interface MissionContent {
   kicker: string;
   headlineLine1: string;
   headlineLine2: string;
-  monumentalQuote: {
+  cards: ManifestoCard[];
+  // Backwards compatibility
+  monumentalQuote?: {
     prefix: string;
     emphasis: string;
     suffix: string;
   };
-  missionBody: string;
-  pillars: PhilosophyPillar[];
+  missionBody?: string;
+  pillars?: PhilosophyPillar[];
 }

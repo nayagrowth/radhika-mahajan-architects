@@ -38,10 +38,10 @@ export default function ContactPage() {
             <div className={styles.portraitBlock}>
               <Image
                 className={styles.portrait}
-                src="/media/projects/rma-project-a01.webp"
-                alt="Radhika Mahajan Architects Studio"
+                src="/media/radhika/radhika-consultation-portrait.webp"
+                alt="Ar. Radhika Mahajan — Design Consultation"
                 width={800}
-                height={1000}
+                height={1200}
                 sizes="(max-width: 900px) 50vw, 22rem"
                 quality={90}
               />

@@ -1,274 +1,303 @@
+/* Radhika Mahajan Architects (RMA) — Act 4 The Manifesto & Studio Foundation */
 .missionSection {
-  --dv-ink: #11110f;
-  --dv-body: #4a473e;
-  --dv-canvas: #f4f1ea;
-  --dv-gold-art: #c89545;
-  --dv-gold-text: #8f621f;
-  --dv-gold-line: #d8aa5a;
-  --dv-line: rgba(17, 17, 15, 0.12);
-  --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --rma-ink: #FFFFFF;
+  --rma-body: #BDB7AB;
+  --rma-canvas-dark: #0E0E10;
+  --rma-gold: #C5A880;
+  --rma-gold-deep: #9D7E56;
+  --rma-champagne: #D6C2A5;
+  --rma-line: rgba(255, 255, 255, 0.08);
+  --dv-serif: var(--font-serif), "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
-  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
 
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   min-height: 100dvh;
-  max-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--dv-canvas);
-  color: var(--dv-ink);
-  padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 6rem);
+  background-color: var(--rma-canvas-dark);
+  color: #FFFFFF;
   overflow: clip;
   box-sizing: border-box;
 }
 
-/* Atmospheric Layer */
-.atmosphereLayer {
+/* Background Architectural Blueprint & Wireframe Graphics */
+.blueprintAtmosphere {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.9;
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(200, 149, 69, 0.08), transparent 65%),
-    radial-gradient(circle at 10% 20%, rgba(200, 149, 69, 0.04), transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(200, 149, 69, 0.04), transparent 45%);
-}
-
-/* Cinematic Background Video Layer */
-.videoBackgroundContainer {
-  position: absolute;
-  inset: 0;
   overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
 }
 
-.backgroundPhoto {
+.blueprintStairs {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-  opacity: 0.38;
-  mix-blend-mode: multiply;
-  filter: contrast(1.15) brightness(0.92) grayscale(0.2);
+  top: 4%;
+  left: 0;
+  width: clamp(260px, 28vw, 440px);
+  height: auto;
+  color: rgba(197, 168, 128, 0.16);
+  opacity: 0.85;
 }
 
-.videoGradientWash {
+.blueprintCircles {
+  position: absolute;
+  top: -8%;
+  right: -4%;
+  width: clamp(340px, 36vw, 560px);
+  height: auto;
+  color: rgba(197, 168, 128, 0.13);
+  opacity: 0.85;
+}
+
+.darkGradientWash {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    circle at 50% 50%,
-    rgba(244, 241, 234, 0.2) 0%,
-    rgba(244, 241, 234, 0.7) 65%,
-    rgba(244, 241, 234, 0.94) 100%
+    circle at 50% 45%,
+    rgba(22, 22, 26, 0.35) 0%,
+    rgba(14, 14, 16, 0.85) 65%,
+    rgba(10, 10, 12, 0.98) 100%
   );
 }
 
-.ensoAura {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(380px, 45vw, 650px);
-  height: clamp(380px, 45vw, 650px);
-  background-image: url("/hero/enso-brush-master.webp");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-  will-change: transform, opacity;
-}
-
-/* Central Horizontally Spread Container */
+/* Central Manifesto Container */
 .manifestoContainer {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
-  max-width: 72rem;
+  max-width: 88rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(1.4rem, 2.6vh, 2.2rem);
+  gap: clamp(1.8rem, 3.8vh, 3.4rem);
+  padding: clamp(4.8rem, 8.5vh, 6.2rem) clamp(1.8rem, 4.5vw, 4rem) clamp(1.4rem, 2.8vh, 2.6rem);
 }
 
-/* Eyebrow / Act Kicker */
+/* Top Kicker Block */
 .kickerBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .sectionIndex {
   font-family: var(--dv-sans);
-  font-size: clamp(0.78rem, 0.85vw, 0.92rem);
+  font-size: clamp(0.72rem, 0.8vw, 0.84rem);
   font-weight: 700;
   letter-spacing: 0.26em;
-  color: var(--dv-gold-text);
+  color: var(--rma-gold);
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   margin: 0;
 }
 
+.indexSlash {
+  color: rgba(197, 168, 128, 0.45);
+}
+
 .kickerMeta {
-  font-family: var(--dv-mono);
-  font-size: 0.72rem;
+  font-family: var(--dv-sans);
+  font-size: clamp(0.66rem, 0.72vw, 0.76rem);
+  font-weight: 600;
   letter-spacing: 0.2em;
-  color: #8c887f;
+  color: #8C867E;
   text-transform: uppercase;
   margin: 0;
 }
 
-/* Horizontally Spread Core Belief Quote */
-.quoteSculpture {
-  position: relative;
-  margin: 0;
-  padding: 0;
+/* Master Serif Headline: Designing Spaces. / Creating Experiences. */
+.headlineBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.9rem, 1.8vh, 1.6rem);
   width: 100%;
 }
 
-.quoteHeadline {
+.headline {
   font-family: var(--dv-serif);
-  font-size: clamp(2.4rem, 4.4vw, 4.6rem);
-  font-weight: 700;
-  line-height: 1.14;
-  letter-spacing: -0.02em;
-  color: var(--dv-ink);
+  font-size: clamp(3rem, 5.8vw, 5.8rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 
 .headlineMask {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 
 .headlineLine {
   display: block;
   will-change: transform, opacity;
-  white-space: normal;
 }
 
-.goldEmphasis {
-  background: linear-gradient(135deg, #8f621f 0%, #c89545 50%, #8f621f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.headlineWhite {
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.headlineChampagne {
+  color: var(--rma-champagne);
   font-style: italic;
-  padding-right: 0.06em;
+  font-weight: 400;
 }
 
-/* Central Gold Laser Axis with Center Accent */
-.laserContainer {
+/* Central Gold Diamond Underline Rule */
+.centerRuleContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  width: clamp(140px, 20vw, 240px);
-  transform-origin: center;
+  gap: 0.75rem;
+  width: clamp(160px, 22vw, 280px);
+  margin-top: 0.2rem;
 }
 
-.laserLine {
+.centerRuleLine {
   flex: 1;
-  height: 1.5px;
+  height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--dv-gold-line) 40%,
-    var(--dv-gold-art) 100%
-  );
-  opacity: 0.75;
-}
-
-.laserLine:last-child {
-  background: linear-gradient(
-    90deg,
-    var(--dv-gold-art) 0%,
-    var(--dv-gold-line) 60%,
+    rgba(197, 168, 128, 0.65) 50%,
     transparent 100%
   );
 }
 
-.laserDiamond {
-  width: 5px;
-  height: 5px;
-  background-color: var(--dv-gold-art);
-  transform: rotate(45deg);
+.centerRuleDiamond {
+  color: var(--rma-gold);
+  font-size: 0.55rem;
   flex-shrink: 0;
 }
 
-/* Two Pure Editorial Tenets */
-.tenetsRow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(1.5rem, 3.5vw, 3.2rem);
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* 3-Column Foundation Manifesto Cards */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 2vw, 2.4rem);
+  width: 100%;
+  margin-top: clamp(0.6rem, 1.2vh, 1.4rem);
 }
 
-.tenetItem {
+.manifestoCard {
+  background-color: rgba(22, 22, 26, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: clamp(1.8rem, 3.2vh, 2.6rem) clamp(1.6rem, 2.2vw, 2.4rem);
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+  border-radius: 0px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  transition: border-color 260ms ease, transform 240ms ease, box-shadow 260ms ease;
+  min-height: clamp(140px, 18vh, 180px);
+  justify-content: space-between;
+}
+
+.manifestoCard:hover {
+  border-color: rgba(197, 168, 128, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.cardNumber {
   font-family: var(--dv-sans);
-  font-size: clamp(0.92rem, 1.05vw, 1.1rem);
-  font-weight: 500;
-  color: var(--dv-body);
-  letter-spacing: -0.01em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--rma-gold);
 }
 
-.tenetDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--dv-gold-art);
-  flex-shrink: 0;
+.cardNumberUnderline {
+  width: 18px;
+  height: 1px;
+  background-color: rgba(197, 168, 128, 0.5);
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .manifestoContainer {
+.cardStatement {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.92rem, 1.05vw, 1.12rem);
+  line-height: 1.55;
+  color: #BDB7AB;
+  margin: 1.2rem 0 0 0;
+  font-weight: 400;
+  max-width: 22rem;
+}
+
+.cardCrosshair {
+  position: absolute;
+  right: clamp(1.2rem, 1.6vw, 1.8rem);
+  bottom: clamp(1.2rem, 1.6vh, 1.6rem);
+  font-family: var(--dv-sans);
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+  line-height: 1;
+  transition: color 240ms ease, transform 240ms ease;
+}
+
+.manifestoCard:hover .cardCrosshair {
+  color: rgba(197, 168, 128, 0.6);
+  transform: scale(1.15);
+}
+
+/* Responsive Adaptations */
+@media (max-width: 960px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
     gap: 1.2rem;
   }
 
-  .quoteHeadline {
-    font-size: clamp(2rem, 7.5vw, 3rem);
+  .manifestoCard {
+    min-height: auto;
+    padding: 1.6rem 1.4rem;
   }
 
-  .tenetsRow {
-    flex-direction: column;
-    gap: 0.65rem;
-    align-items: center;
+  .headline {
+    font-size: clamp(2.4rem, 8.5vw, 4rem);
   }
 }
 
+@media (max-width: 640px) {
+  .missionSection {
+    padding: 2rem 1.2rem;
+    height: auto;
+    min-height: 100dvh;
+  }
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .headlineLine,
-  .laserContainer,
-  .tenetsRow,
-  .ensoAura {
+  .centerRuleContainer,
+  .manifestoCard {
     animation: none !important;
     transition: none !important;
     transform: none !important;
