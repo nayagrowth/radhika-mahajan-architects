@@ -1,0 +1,14 @@
+http:
+  routers:
+    rma-web-router:
+      rule: "Host(`rma.preview.nayagrowth.com`)"
+      entryPoints:
+        - websecure
+      service: rma-web-service
+      tls:
+        certResolver: letsencrypt
+  services:
+    rma-web-service:
+      loadBalancer:
+        servers:
+          - url: "http://rma-web:3000"

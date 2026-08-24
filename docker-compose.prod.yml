@@ -26,13 +26,6 @@ services:
       - "traefik.http.routers.rma-web.entrypoints=websecure"
       - "traefik.http.routers.rma-web.tls.certresolver=letsencrypt"
       - "traefik.http.services.rma-web.loadbalancer.server.port=3000"
-      - "traefik.http.middlewares.rma-security.headers.stsseconds=31536000"
-      - "traefik.http.middlewares.rma-security.headers.stsincludesubdomains=true"
-      - "traefik.http.middlewares.rma-security.headers.contenttypenosniff=true"
-      - "traefik.http.middlewares.rma-security.headers.framedeny=true"
-      - "traefik.http.middlewares.rma-security.headers.referrerpolicy=strict-origin-when-cross-origin"
-      - "traefik.http.middlewares.rma-security.headers.permissionspolicy=camera=(), microphone=(), geolocation=()"
-      - "traefik.http.routers.rma-web.middlewares=rma-security"
 
 networks:
   proxy_net:
