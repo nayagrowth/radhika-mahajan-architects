@@ -8,6 +8,7 @@ import styles from "./contact.module.css";
 const INITIAL_STATE: ContactFormState = { status: "idle", message: "" };
 
 const PROJECT_TYPES = [
+  "Full Home Interior (3 & 4 BHK)",
   "Full Home Interior (3 BHK)",
   "Full Home Interior (4 BHK)",
   "Luxury Bungalow / Villa (Pune / Lonavala)",
@@ -25,6 +26,38 @@ const BUDGET_RANGES = [
   "₹75 Lakh+",
 ];
 
+function resolveDefaultTopic(param: string | null): string {
+  if (!param) return "";
+  if (PROJECT_TYPES.includes(param)) return param;
+
+  const lower = param.toLowerCase();
+  if (lower.includes("3 bhk") && !lower.includes("4 bhk") && !lower.includes("3/4")) {
+    return "Full Home Interior (3 BHK)";
+  }
+  if (lower.includes("4 bhk") && !lower.includes("3 bhk") && !lower.includes("3/4")) {
+    return "Full Home Interior (4 BHK)";
+  }
+  if (lower.includes("3/4") || lower.includes("3 & 4") || lower.includes("full home")) {
+    return "Full Home Interior (3 & 4 BHK)";
+  }
+  if (lower.includes("villa") || lower.includes("retreat") || lower.includes("lonavala") || lower.includes("bungalow")) {
+    return "Luxury Bungalow / Villa (Pune / Lonavala)";
+  }
+  if (lower.includes("kitchen") || lower.includes("wardrobe") || lower.includes("joinery")) {
+    return "Modular Kitchen & Custom Wardrobes";
+  }
+  if (lower.includes("renovation") || lower.includes("remodel")) {
+    return "Turnkey Civil Renovation";
+  }
+  if (lower.includes("commercial") || lower.includes("workspace") || lower.includes("office")) {
+    return "Commercial & Workspace Architecture";
+  }
+  if (lower.includes("consultation")) {
+    return "Complimentary 3D Consultation";
+  }
+  return "";
+}
+
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(
     submitContactForm,
@@ -32,9 +65,8 @@ export function ContactForm() {
   );
 
   const searchParams = useSearchParams();
-  const requestedTopic = searchParams.get("topic");
-  const defaultTopic =
-    requestedTopic && PROJECT_TYPES.includes(requestedTopic) ? requestedTopic : "";
+  const rawParam = searchParams.get("type") || searchParams.get("topic");
+  const defaultTopic = resolveDefaultTopic(rawParam);
 
   if (state.status === "success") {
     return (

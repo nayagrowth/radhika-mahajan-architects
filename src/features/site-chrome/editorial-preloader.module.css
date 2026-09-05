@@ -1,50 +1,304 @@
-.preloaderSurface {
+/* ==========================================================================
+   Radhika Mahajan Architects (RMA) — Architectural CAD Preloader
+   Bespoke drafting table, vector compass reticle & dual-shutter reveal
+   ========================================================================== */
+
+.preloaderRoot {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background-color: #f4f1ea;
+  z-index: 99999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1), visibility 650ms ease;
   pointer-events: all;
+  overflow: hidden;
+  background-color: #060208;
+  color: #f4f8fb;
+  user-select: none;
 }
 
-.preloaderSurface.dismissed {
-  opacity: 0;
-  visibility: hidden;
+/* --- Dual Cinematic Shutters ------------------------------------------- */
+.curtain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5vh;
+  background: radial-gradient(circle at 50% 50%, #0d0812 0%, #060208 85%);
+  z-index: 1;
+  transition: transform 720ms cubic-bezier(0.85, 0, 0.15, 1);
+  will-change: transform;
+}
+
+.curtainTop {
+  top: 0;
+  transform: translateY(0);
+}
+
+.curtainBottom {
+  bottom: 0;
+  transform: translateY(0);
+}
+
+.curtainGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(200, 149, 69, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 149, 69, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
   pointer-events: none;
 }
 
-.brandCenter {
+.shutterSeam {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 149, 69, 0.2) 20%,
+    rgba(216, 170, 90, 0.65) 50%,
+    rgba(200, 149, 69, 0.2) 80%,
+    transparent 100%
+  );
+  transform: translateY(-50%);
+  z-index: 3;
+  transition: opacity 300ms ease;
+}
+
+/* --- Exit State: Shutter Split & Element Expansion -------------------- */
+.preloaderExiting .curtainTop {
+  transform: translateY(-100%);
+}
+
+.preloaderExiting .curtainBottom {
+  transform: translateY(100%);
+}
+
+.preloaderExiting .shutterSeam {
+  opacity: 0;
+}
+
+.preloaderExiting .hudOverlay {
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
+.preloaderExiting .centerStage {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 480ms ease, transform 650ms cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* --- Folio Perimeter HUD Frame ---------------------------------------- */
+.hudOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-family-mono, "SF Mono", monospace);
+}
+
+.hudTopLeft,
+.hudTopRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hudTopLeft {
+  align-self: flex-start;
+}
+
+.hudTopRight {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.hudTitle {
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #f4f8fb;
+  text-transform: uppercase;
+}
+
+.hudSub {
+  font-size: clamp(0.62rem, 0.75vw, 0.72rem);
+  letter-spacing: 0.14em;
+  color: #8d8588;
+}
+
+.hudMono {
+  font-size: clamp(0.62rem, 0.75vw, 0.72rem);
+  letter-spacing: 0.12em;
+  color: #c89545;
+}
+
+.hudCross {
+  font-size: 0.75rem;
+  color: rgba(200, 149, 69, 0.6);
+  margin-top: 0.2rem;
+}
+
+.hudBottomLeft {
+  align-self: flex-start;
+}
+
+.hudBottomRight {
+  align-self: flex-end;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.phaseIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(0.68rem, 0.8vw, 0.76rem);
+  letter-spacing: 0.14em;
+  color: #c89545;
+}
+
+.phaseStep {
+  font-weight: 700;
+  color: #d8aa5a;
+}
+
+.phaseText {
+  color: rgba(244, 248, 251, 0.85);
+}
+
+.blinker {
+  animation: blink 900ms steps(2, start) infinite;
+  color: #d8aa5a;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.counterBox {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.counterNum {
+  font-family: var(--font-family-mono, "SF Mono", monospace);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f4f8fb;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.counterPercent {
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  font-weight: 600;
+  color: #c89545;
+}
+
+.counterStatus {
+  font-size: clamp(0.6rem, 0.72vw, 0.68rem);
+  letter-spacing: 0.2em;
+  color: #8d8588;
+}
+
+/* --- Central Architectural Drafting Stage ----------------------------- */
+.centerStage {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 92vw;
+  transition: transform 650ms cubic-bezier(0.85, 0, 0.15, 1), opacity 450ms ease;
 }
 
-.monogramRing {
+/* --- Vector CAD Reticle & Compass Assembly ---------------------------- */
+.reticleWrapper {
   position: relative;
-  width: 72px;
-  height: 72px;
+  width: clamp(240px, 30vw, 340px);
+  height: clamp(240px, 30vw, 340px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.ringSvg {
+.reticleSvg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  color: #c89545;
-  animation: rotateRing 8s linear infinite;
+  overflow: visible;
 }
 
-@keyframes rotateRing {
+.axisLine {
+  stroke: rgba(200, 149, 69, 0.22);
+  stroke-width: 0.75;
+}
+
+.axisTick {
+  stroke: rgba(200, 149, 69, 0.45);
+  stroke-width: 0.75;
+}
+
+.registrationGroup {
+  stroke: rgba(200, 149, 69, 0.35);
+  stroke-width: 1;
+  fill: none;
+}
+
+.regBracket {
+  stroke: rgba(200, 149, 69, 0.4);
+}
+
+/* Rotating Azimuth Compass Group */
+.azimuthRing {
+  transform-origin: 250px 250px;
+  animation: rotateClockwise 36s linear infinite;
+}
+
+.azimuthCircle {
+  stroke: rgba(200, 149, 69, 0.18);
+  stroke-width: 0.75;
+}
+
+.azimuthTick {
+  stroke: rgba(200, 149, 69, 0.35);
+  stroke-width: 0.75;
+}
+
+.azimuthTickMajor {
+  stroke: #c89545;
+  stroke-width: 1.25;
+}
+
+.cardinalText {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  fill: rgba(200, 149, 69, 0.7);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+@keyframes rotateClockwise {
   from {
     transform: rotate(0deg);
   }
@@ -53,87 +307,231 @@
   }
 }
 
-.monogramText {
-  font-family: var(--font-serif, "Playfair Display", serif);
-  font-size: 1.55rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #11110f;
-  animation: pulseMonogram 2s ease-in-out infinite alternate;
+/* Counter-Rotating Caliper Ring */
+.caliperRing {
+  transform-origin: 250px 250px;
+  animation: rotateCounterClockwise 24s linear infinite;
 }
 
-@keyframes pulseMonogram {
+.caliperDashedCircle {
+  stroke: rgba(213, 204, 191, 0.22);
+  stroke-width: 0.75;
+  stroke-dasharray: 4 6;
+}
+
+.caliperAccentArc {
+  stroke: #c89545;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Dynamic Golden Ratio Progress Ring */
+.progressTrack {
+  stroke: rgba(200, 149, 69, 0.12);
+  stroke-width: 1.5;
+}
+
+.progressArc {
+  stroke: #c89545;
+  stroke-width: 1.75;
+  stroke-dasharray: 829;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 250px 250px;
+  transition: stroke-dashoffset 80ms ease-out;
+}
+
+.innerOrbit {
+  stroke: rgba(200, 149, 69, 0.2);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+
+/* Central Official Monogram Core */
+.monogramCore {
+  position: relative;
+  width: clamp(80px, 10vw, 106px);
+  height: clamp(80px, 10vw, 106px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogramGlow {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 149, 69, 0.32) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: pulseGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
   0% {
-    opacity: 0.65;
-    transform: scale(0.97);
+    opacity: 0.5;
+    transform: scale(0.95);
   }
   100% {
     opacity: 1;
-    transform: scale(1.02);
+    transform: scale(1.06);
   }
 }
 
-.brandWordmark {
+.monogramImgContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogramImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(200, 149, 69, 0.45));
+}
+
+/* --- Brand Lockup ----------------------------------------------------- */
+.brandLockup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.35rem;
   text-align: center;
 }
 
-.brandName {
-  font-family: var(--font-serif, "Playfair Display", serif);
-  font-size: 0.95rem;
+.brandTitle {
+  font-family: var(--font-family-serif, "Playfair Display", serif);
+  font-size: clamp(0.85rem, 1.3vw, 1.15rem);
   font-weight: 700;
-  letter-spacing: 0.22em;
-  color: #11110f;
+  letter-spacing: 0.28em;
+  color: #f4f8fb;
   text-transform: uppercase;
+  margin: 0;
 }
 
-.brandKicker {
-  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
-  font-size: 0.72rem;
+.brandTaglineRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-family-mono, monospace);
+  font-size: clamp(0.62rem, 0.78vw, 0.72rem);
+  letter-spacing: 0.24em;
+  color: #c89545;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: #8f621f;
-  text-transform: uppercase;
 }
 
-.progressBarContainer {
-  margin-top: 1.8rem;
-  width: 140px;
-  height: 2px;
-  background-color: rgba(200, 149, 69, 0.2);
-  border-radius: 2px;
-  overflow: hidden;
+.taglineSeparator {
+  color: rgba(200, 149, 69, 0.45);
+  font-size: 0.6rem;
+}
+
+/* --- Architectural Vernier Caliper Scale ------------------------------ */
+.caliperScaleContainer {
+  margin-top: 0.5rem;
+  width: clamp(240px, 28vw, 320px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.caliperRulerTicks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: #8d8588;
+}
+
+.rulerMark {
   position: relative;
 }
 
-.progressBarFill {
+.caliperBarTrack {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(200, 149, 69, 0.15);
+  border-radius: 2px;
+  overflow: visible;
+}
+
+.caliperBarFill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #c89545, #dfb772);
-  transform-origin: left center;
-  animation: fillProgress 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  background: linear-gradient(90deg, #8f621f 0%, #c89545 50%, #d8aa5a 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(200, 149, 69, 0.5);
+  transition: width 80ms ease-out;
 }
 
-@keyframes fillProgress {
-  0% {
-    transform: scaleX(0.05);
-  }
-  60% {
-    transform: scaleX(0.75);
-  }
-  100% {
-    transform: scaleX(1);
-  }
+.caliperCursor {
+  position: absolute;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  transform: translateX(-50%) rotate(45deg);
+  background-color: #d8aa5a;
+  border: 1px solid #060208;
+  box-shadow: 0 0 6px #c89545;
+  transition: left 80ms ease-out;
 }
 
+.caliperSubtext {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family-mono, monospace);
+  font-size: clamp(0.55rem, 0.65vw, 0.62rem);
+  letter-spacing: 0.12em;
+  color: #8d8588;
+  margin-top: 0.2rem;
+}
+
+/* --- Reduced Motion --------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .preloaderSurface {
+  .preloaderRoot {
     display: none !important;
   }
 }
+
+/* --- Mobile Breakpoint Optimization ------------------------------------ */
+@media (max-width: 640px) {
+  .hudOverlay {
+    padding: 1rem;
+  }
+
+  .hudTopRight,
+  .hudBottomLeft {
+    display: none;
+  }
+
+  .hudOverlay {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .reticleWrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .caliperScaleContainer {
+    width: 230px;
+  }
+}
+

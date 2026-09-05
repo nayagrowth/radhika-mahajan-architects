@@ -47,7 +47,7 @@ export const bridgeContent: BridgeContent = {
     },
     {
       label: "Explore Built Portfolio",
-      href: "/resources",
+      href: "/projects",
       primary: false,
       event: "cta_explore_projects_bridge",
     },

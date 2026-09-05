@@ -231,5 +231,3 @@ export function RmaThinkingAct({
   );
 }
 
-export { RmaThinkingAct as DipakThinkingAct };
-

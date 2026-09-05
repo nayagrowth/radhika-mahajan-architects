@@ -1,6 +1,7 @@
 export { SiteHeader } from "./SiteHeader";
 export { SiteFooter } from "./SiteFooter";
 export { EditorialPreloader } from "./EditorialPreloader";
+export { WhatsAppConcierge } from "./WhatsAppConcierge";
 export {
   siteBrand,
   primaryNav,

@@ -65,24 +65,18 @@ export default function VideosPage() {
 
             {rail.videos.length > 0 ? (
               <ul className={styles.videoGrid}>
-                {rail.videos.map((video, index) => (
-                  <Reveal as="li" key={video.id} index={index}>
-                    <a
-                      className={styles.videoCard}
-                      href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-ac-event="public.videos.video_clicked"
-                    >
+                {rail.videos.map((video, index) => {
+                  const cardHref = video.href || (video.youtubeId ? `https://www.youtube.com/watch?v=${video.youtubeId}` : "/contact");
+                  const isExternal = cardHref.startsWith("http");
+                  const thumbSrc = video.poster || (video.youtubeId ? `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg` : "/media/rma/hero-living-main.webp");
+
+                  const cardContent = (
+                    <>
                       <span className={styles.thumbFrame}>
-                        {/*
-                          Thumbnail comes straight from YouTube's CDN, so a new
-                          video needs only its id — no asset pipeline step.
-                        */}
                         <Image
                           className={styles.thumb}
-                          src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
-                          alt=""
+                          src={thumbSrc}
+                          alt={video.title}
                           width={480}
                           height={360}
                           sizes="(max-width: 700px) 100vw, 20rem"
@@ -96,9 +90,33 @@ export default function VideosPage() {
                         {video.category} · {video.duration}
                       </span>
                       <h3 className={styles.videoTitle}>{video.title}</h3>
-                    </a>
-                  </Reveal>
-                ))}
+                    </>
+                  );
+
+                  return (
+                    <Reveal as="li" key={video.id} index={index}>
+                      {isExternal ? (
+                        <a
+                          className={styles.videoCard}
+                          href={cardHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-ac-event="public.videos.video_clicked"
+                        >
+                          {cardContent}
+                        </a>
+                      ) : (
+                        <Link
+                          className={styles.videoCard}
+                          href={cardHref}
+                          data-ac-event="public.videos.video_clicked"
+                        >
+                          {cardContent}
+                        </Link>
+                      )}
+                    </Reveal>
+                  );
+                })}
               </ul>
             ) : (
               <Reveal>
@@ -133,7 +151,7 @@ export default function VideosPage() {
         </section>
       ))}
 
-      {/* --- Signature content properties --- */}
+      {/* --- Signature studio frameworks --- */}
       <section
         className={`${editorial.section} ${editorial.sectionDark}`}
         aria-labelledby="signature-heading"
@@ -141,9 +159,9 @@ export default function VideosPage() {
         <div className={editorial.container}>
           <SectionHeader
             index="05"
-            label="Signature Content"
-            headline="My signature content properties"
-            note="Different formats. One purpose: understand the buyer better and create more certainty."
+            label="Studio Standards"
+            headline="Architectural frameworks & execution principles"
+            note="Definitive protocols designed to eliminate ambiguity, verify materiality, and deliver turnkey precision across Pune & Lonavala."
             inverted
             headingId="signature-heading"
           />

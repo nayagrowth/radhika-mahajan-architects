@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { HeroCta, NavLink } from "./hero.types";
 import styles from "./rma-hero.module.css";
 
@@ -86,9 +87,9 @@ export function MobileNav({
       >
         {/* Drawer Header */}
         <div className={styles.drawerHeader}>
-          <a
+          <Link
             className={styles.brandLink}
-            href="#hero"
+            href="/"
             onClick={handleCloseAndReturnFocus}
             tabIndex={isOpen ? 0 : -1}
           >
@@ -99,7 +100,7 @@ export function MobileNav({
               height={58}
               className={styles.headerSignatureImg}
             />
-          </a>
+          </Link>
 
           <button
             ref={closeBtnRef}
@@ -120,7 +121,7 @@ export function MobileNav({
           {navLinks.map((link, index) => {
             const num = (index + 1).toString().padStart(2, "0");
             return (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className={`${styles.drawerNavLink} ${link.active ? styles.drawerNavLinkActive : ""}`}
@@ -131,7 +132,7 @@ export function MobileNav({
                   {num}
                 </span>
                 <span className={styles.drawerNavLabel}>{link.label}</span>
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -140,7 +141,7 @@ export function MobileNav({
         {secondaryCta?.href ? (
           <div className={styles.drawerFooter}>
             <div className={styles.drawerDivider} aria-hidden="true" />
-            <a
+            <Link
               href={secondaryCta.href}
               className={styles.drawerCta}
               onClick={handleCloseAndReturnFocus}
@@ -153,7 +154,7 @@ export function MobileNav({
               <span aria-hidden="true" className={styles.drawerCtaArrow}>
                 →
               </span>
-            </a>
+            </Link>
           </div>
         ) : null}
       </div>

@@ -31,6 +31,12 @@ const nextConfig: NextConfig = {
         destination: "/articles/:slug",
         permanent: true,
       },
+      // Permanent 301: /resources → /projects
+      {
+        source: "/resources",
+        destination: "/projects",
+        permanent: true,
+      },
     ];
   },
   async headers() {

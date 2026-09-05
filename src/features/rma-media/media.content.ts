@@ -5,9 +5,11 @@
 export interface VideoEntry {
   id: string;
   title: string;
-  youtubeId: string;
+  youtubeId?: string;
+  poster?: string;
   category: string;
   duration: string;
+  href?: string;
 }
 
 export interface VideoRail {
@@ -28,16 +30,18 @@ export const videoRails: VideoRail[] = [
       {
         id: "v1",
         title: "Modern 4 BHK Residence Tour — Bibewadi, Pune",
-        youtubeId: "dQw4w9WgXcQ",
+        poster: "/media/rma/hero-living-main.webp",
         category: "FULL HOME INTERIOR",
         duration: "8 MIN TOUR",
+        href: "/contact?topic=Bibewadi%204%20BHK%20Interior%20Project",
       },
       {
         id: "v2",
         title: "Luxury Hillside Retreat Walkthrough — Lonavala",
-        youtubeId: "dQw4w9WgXcQ",
+        poster: "/media/rma/hero-lonavala-villa.webp",
         category: "WEEKEND VILLA",
         duration: "11 MIN TOUR",
+        href: "/contact?topic=Lonavala%20Villa%20Architecture",
       },
     ],
   },
@@ -49,9 +53,10 @@ export const videoRails: VideoRail[] = [
       {
         id: "v3",
         title: "The 45-Day Turnkey Interior Process Breakdown",
-        youtubeId: "dQw4w9WgXcQ",
+        poster: "/media/rma/journal-45-day-blueprint.webp",
         category: "PROCESS",
         duration: "6 MIN",
+        href: "/articles/the-45-day-turnkey-execution-blueprint",
       },
     ],
   },

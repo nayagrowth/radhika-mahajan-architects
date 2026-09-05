@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SiteHeader, SiteFooter } from "@/features/site-chrome";
+import { SiteHeader, SiteFooter, WhatsAppConcierge } from "@/features/site-chrome";
 
 /**
  * Chrome for every page except Home.
@@ -13,6 +13,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       <SiteHeader />
       <main id="main">{children}</main>
       <SiteFooter />
+      <WhatsAppConcierge />
     </>
   );
 }

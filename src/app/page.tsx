@@ -1,5 +1,5 @@
 import { HomeIntroStory } from "@/features/home-intro-story";
-import { SiteHeader, SiteFooter } from "@/features/site-chrome";
+import { SiteHeader, SiteFooter, WhatsAppConcierge } from "@/features/site-chrome";
 import { getAllArticles } from "@/lib/articles";
 import type { FeaturedArticle } from "@/features/rma-thinking/thinking.types";
 
@@ -35,6 +35,7 @@ export default function HomePage() {
         <HomeIntroStory latestArticles={latestArticles} />
       </main>
       <SiteFooter />
+      <WhatsAppConcierge />
     </>
   );
 }

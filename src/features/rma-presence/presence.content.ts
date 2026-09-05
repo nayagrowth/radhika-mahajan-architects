@@ -15,7 +15,7 @@ export const presenceContent: PresenceContent = {
       sublabel: "Luxury 3 & 4 BHK Full Home Interiors",
       image: "/landmarks/project-01-kolte-patil.webp",
       category: "RESIDENTIAL",
-      href: "/resources",
+      href: "/projects",
     },
     {
       id: "godrej-infinity",
@@ -24,7 +24,7 @@ export const presenceContent: PresenceContent = {
       sublabel: "Contemporary Turnkey Living Spaces",
       image: "/landmarks/project-02-godrej-infinity.webp",
       category: "PREMIUM",
-      href: "/resources",
+      href: "/projects",
     },
     {
       id: "koregaon-park",
@@ -33,7 +33,7 @@ export const presenceContent: PresenceContent = {
       sublabel: "Bespoke Joinery & Architectural Styling",
       image: "/landmarks/project-03-koregaon-park.webp",
       category: "LUXURY",
-      href: "/resources",
+      href: "/projects",
     },
     {
       id: "lonavala-villas",
@@ -42,7 +42,7 @@ export const presenceContent: PresenceContent = {
       sublabel: "Weekend Retreats & Landscape Integration",
       image: "/landmarks/project-04-lonavala-villas.webp",
       category: "RETREATS",
-      href: "/resources",
+      href: "/projects",
     },
     {
       id: "bibewadi-estates",
@@ -51,7 +51,7 @@ export const presenceContent: PresenceContent = {
       sublabel: "Complete Spatial & Structural Renovations",
       image: "/landmarks/project-05-bibewadi-estates.webp",
       category: "TURNKEY",
-      href: "/resources",
+      href: "/projects",
     },
   ],
   studioName: "RMA",

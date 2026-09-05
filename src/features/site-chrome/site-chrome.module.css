@@ -711,3 +711,101 @@
   }
 }
 
+/* =========================================================================
+   FLOATING ARCHITECTURAL WHATSAPP CONCIERGE
+   ========================================================================= */
+
+.whatsappFloating {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(14, 14, 16, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  color: #F7F4EE;
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.whatsappFloating:hover {
+  transform: translateY(-2px);
+  border-color: #C5A880;
+  box-shadow: 0 12px 36px rgba(197, 168, 128, 0.25);
+  color: #FFFFFF;
+}
+
+.whatsappPulsePip {
+  width: 8px;
+  height: 8px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  animation: whatsappPulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsappTextCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.whatsappLabel {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #F7F4EE;
+  line-height: 1.2;
+}
+
+.whatsappSub {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.64rem;
+  color: #C5A880;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+.whatsappArrow {
+  color: #C5A880;
+  font-size: 0.85rem;
+  transition: transform 200ms ease;
+}
+
+.whatsappFloating:hover .whatsappArrow {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .whatsappFloating {
+    bottom: 1.2rem;
+    right: 1.2rem;
+    padding: 0.55rem 0.95rem;
+  }
+
+  .whatsappSub {
+    display: none;
+  }
+}
+
+

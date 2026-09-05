@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { presenceContent } from "./presence.content";
 import type { PresenceContent } from "./presence.types";
 import styles from "./rma-presence-act.module.css";
@@ -53,8 +54,8 @@ export function RmaPresenceAct({
               className={styles.projectCard}
               data-story-act3-item="true"
             >
-              <a
-                href={project.href || "/resources"}
+              <Link
+                href={project.href || "/projects"}
                 className={styles.cardLink}
                 aria-label={`View ${project.name} details`}
               >
@@ -84,7 +85,7 @@ export function RmaPresenceAct({
                   </h3>
                   <p className={styles.projectSublabel}>{project.sublabel}</p>
                 </div>
-              </a>
+              </Link>
             </article>
           ))}
         </div>
@@ -108,5 +109,3 @@ export function RmaPresenceAct({
     </section>
   );
 }
-
-export { RmaPresenceAct as DipakPresenceAct };

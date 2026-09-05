@@ -28,7 +28,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Comprehensive turnkey interiors for 3 & 4 BHK residences across Pune, blending functional layouts, natural light, and refined materiality.",
       image: "/media/rma/hero-living-main.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["3 & 4 BHK Layouts", "Turnkey Handover", "Photorealistic 3D"],
     },
     {
@@ -40,7 +40,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Complete lifecycle architectural design—from feasibility studies, sun-path planning, and municipal drawings to on-site structural supervision.",
       image: "/media/rma/hero-elevation-concept.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Sun-Path Orientation", "Municipal Drawings", "Site Supervision"],
     },
     {
@@ -52,7 +52,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Tailored hillside bungalows and serene retreats in Lonavala engineered to celebrate outdoor terraces, cross-ventilation, and landscape vistas.",
       image: "/landmarks/project-04-lonavala-villas.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Lonavala Estates", "Indoor-Outdoor Flow", "Landscape Sync"],
     },
     {
@@ -64,7 +64,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Ergonomic kitchen architecture and custom wardrobes engineered with top-tier hardware (Hettich, Ebco) and moisture-resistant boards.",
       image: "/media/rma/hero-kitchen-modern.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Hettich / Ebco Hardware", "Anti-Moisture Core", "Custom Pantries"],
     },
     {
@@ -76,7 +76,7 @@ export const topicsContent: TopicsContent = {
       description:
         "High-performance commercial workspaces and executive suites designed to enhance acoustic comfort, employee focus, and brand prestige.",
       image: "/media/rma/hero-materials.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Acoustic Partitions", "Executive Cabins", "Brand Integration"],
     },
     {
@@ -88,7 +88,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Complete spatial remodeling, civil modifications, false ceilings, electrical realignment, and curated furniture styling for established properties.",
       image: "/media/rma/hero-bibewadi-penthouse.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Civil Alterations", "Lighting Realignment", "Full Refurbishment"],
     },
     {
@@ -100,7 +100,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Custom-crafted dining suites, accent chairs, fluted wall paneling, and warm ambient lighting schemes tailored to each family.",
       image: "/media/rma/hero-interior-suite.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Custom Joinery", "Textured Wall Panels", "Ambient Lighting"],
     },
     {
@@ -112,7 +112,7 @@ export const topicsContent: TopicsContent = {
       description:
         "Passive cooling strategies, cross-ventilation optimization, and durable regional materials engineered for Maharashtra's climate.",
       image: "/media/rma/hero-lighting-detail.webp",
-      href: "/resources",
+      href: "/projects",
       specs: ["Passive Cooling", "Cross-Ventilation", "Regional Sourcing"],
     },
   ],

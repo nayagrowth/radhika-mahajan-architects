@@ -13,7 +13,7 @@ const EVENT_SCHEMA_VERSION = "1";
  * Fixed header for the inner pages.
  *
  * The homepage deliberately does NOT use this: its header is baked into the
- * pinned GSAP story stage (see dipak-hero) so it can deconstruct with Act 1.
+ * pinned GSAP story stage (see rma-hero) so it can deconstruct with Act 1.
  */
 export function SiteHeader() {
   const pathname = usePathname();

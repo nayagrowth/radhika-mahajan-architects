@@ -34,6 +34,7 @@ export function useHomeIntroTimeline({
         {
           opacity: 1,
           visibility: "visible",
+          clearProps: "transform",
         }
       );
       return;

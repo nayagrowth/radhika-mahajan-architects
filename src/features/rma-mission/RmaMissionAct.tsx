@@ -136,5 +136,3 @@ export function RmaMissionAct({
     </section>
   );
 }
-
-export { RmaMissionAct as DipakMissionAct };

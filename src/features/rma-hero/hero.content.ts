@@ -5,7 +5,7 @@ export const rmaHeroContent: HeroContent = {
   brandSecondLine: "MAHAJAN ARCHITECTS",
   navLinks: [
     { label: "About", href: "/about" },
-    { label: "Projects", href: "/resources" },
+    { label: "Projects", href: "/projects" },
     { label: "Practice", href: "/#topics" },
     { label: "Journal", href: "/articles" },
     { label: "Walkthroughs", href: "/videos" },
@@ -40,7 +40,7 @@ export const rmaHeroContent: HeroContent = {
   ctas: [
     {
       label: "EXPLORE SELECTED PROJECTS",
-      href: "/resources",
+      href: "/projects",
       event: "public.rma_hero.primary_cta_clicked",
       kind: "primary",
     },
@@ -57,7 +57,5 @@ export const rmaHeroContent: HeroContent = {
     { value: "100%", label: "Line-Item BOQ Transparency" },
   ],
 };
-
-export const dipakHeroContent = rmaHeroContent;
 
 

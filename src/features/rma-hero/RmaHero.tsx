@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { MobileNav } from "./MobileNav";
 import type { HeroContent, HeroCta } from "./hero.types";
 import styles from "./rma-hero.module.css";
@@ -12,7 +13,7 @@ function CtaButton({ cta }: { cta: HeroCta }) {
   if (!cta.href) return null;
 
   return (
-    <a
+    <Link
       className={cta.kind === "primary" ? styles.primaryCta : styles.secondaryCta}
       href={cta.href}
       data-ac-event={cta.event}
@@ -23,7 +24,7 @@ function CtaButton({ cta }: { cta: HeroCta }) {
       <span aria-hidden="true" className={styles.ctaArrow}>
         →
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -51,9 +52,9 @@ export function RmaHero({ content }: { content: HeroContent }) {
       {/* Master Architectural Header */}
       <header className={styles.header} data-story-header="true">
         <div className={styles.headerInner}>
-          <a
+          <Link
             className={styles.brandLink}
-            href="#hero"
+            href="/"
             aria-label="Radhika Mahajan Architects — Home"
           >
             <Image
@@ -64,11 +65,11 @@ export function RmaHero({ content }: { content: HeroContent }) {
               className={styles.headerSignatureImg}
               priority
             />
-          </a>
+          </Link>
 
           <nav className={styles.desktopNav} aria-label="Architectural Navigation">
             {content.navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className={`${styles.navLink} ${
@@ -81,19 +82,19 @@ export function RmaHero({ content }: { content: HeroContent }) {
                     ◆
                   </span>
                 ) : null}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className={styles.headerActions}>
-            <a
+            <Link
               href="/contact"
               className={styles.headerCtaBtn}
               data-ac-event="public.rma_hero.header_consultation_clicked"
             >
               <span>Book Consultation</span>
               <span className={styles.headerCtaArrow} aria-hidden="true">↗</span>
-            </a>
+            </Link>
 
             <MobileNav
               navLinks={content.navLinks}

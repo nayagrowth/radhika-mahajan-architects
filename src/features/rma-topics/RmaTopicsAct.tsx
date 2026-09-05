@@ -27,6 +27,8 @@ export function RmaTopicsAct({
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const dragStartX = useRef<number>(0);
   const scrollLeftStart = useRef<number>(0);
+  const isDraggingRef = useRef<boolean>(false);
+  const hasDraggedRef = useRef<boolean>(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -75,7 +77,9 @@ export function RmaTopicsAct({
 
   // Pointer Drag Handlers for Interactive Click & Drag
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    setIsDragging(true);
+    if (e.button !== 0) return;
+    isDraggingRef.current = true;
+    hasDraggedRef.current = false;
     dragStartX.current = e.clientX;
     const matrix = window.getComputedStyle(trackRef.current!).transform;
     if (matrix !== "none") {
@@ -87,15 +91,30 @@ export function RmaTopicsAct({
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || !trackRef.current) return;
+    if (!isDraggingRef.current || !trackRef.current) return;
     const deltaX = e.clientX - dragStartX.current;
+    if (Math.abs(deltaX) > 6) {
+      hasDraggedRef.current = true;
+      setIsDragging(true);
+    }
     gsap.set(trackRef.current, {
       x: scrollLeftStart.current + deltaX,
     });
   };
 
   const handlePointerUp = () => {
+    isDraggingRef.current = false;
     setIsDragging(false);
+    setTimeout(() => {
+      hasDraggedRef.current = false;
+    }, 60);
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (hasDraggedRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   return (
@@ -171,7 +190,11 @@ export function RmaTopicsAct({
                 }`}
                 data-story-act5-item="true"
               >
-                <Link href={item.href || "/resources"} className={styles.cardLink}>
+                <Link
+                  href={item.href || "/projects"}
+                  className={styles.cardLink}
+                  onClick={handleCardClick}
+                >
                   {/* Photo Frame with Vignette and Badge */}
                   <div className={styles.imageFrame}>
                     <Image
@@ -252,6 +275,4 @@ export function RmaTopicsAct({
     </section>
   );
 }
-
-export { RmaTopicsAct as DipakTopicsAct };
 

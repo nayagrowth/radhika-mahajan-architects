@@ -229,6 +229,4 @@ export function RmaIdentityAct({
   );
 }
 
-export { RmaIdentityAct as DipakIdentityAct };
-
 

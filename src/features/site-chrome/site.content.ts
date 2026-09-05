@@ -33,7 +33,7 @@ export const siteBrand: SiteBrand = {
 
 export const primaryNav: NavLink[] = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/resources" },
+  { label: "Projects", href: "/projects" },
   { label: "Practice", href: "/#topics" },
   { label: "Journal", href: "/articles" },
   { label: "Walkthroughs", href: "/videos" },

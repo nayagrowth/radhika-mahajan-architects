@@ -16,4 +16,5 @@ extracted_pdf_images/
 google_doc_export.txt
 google_doc_text.txt
 pdf_text.txt
-
+test-results/
+scripts/capture_*.py

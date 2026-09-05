@@ -250,3 +250,40 @@
     display: none;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .storyShell {
+    height: auto;
+    min-height: auto;
+  }
+
+  .storyStage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .act1Wrapper,
+  .act2Wrapper,
+  .act3Wrapper,
+  .act4Wrapper {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .bridgeGoldRule {
+    display: none;
+  }
+}
+
