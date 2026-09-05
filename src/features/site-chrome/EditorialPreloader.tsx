@@ -27,7 +27,9 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
   });
 
   const onReadyRef = useRef(onReady);
-  onReadyRef.current = onReady;
+  useEffect(() => {
+    onReadyRef.current = onReady;
+  }, [onReady]);
 
   useEffect(() => {
     if (isComplete) {
